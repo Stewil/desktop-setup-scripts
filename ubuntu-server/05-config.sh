@@ -41,6 +41,7 @@ configure_user(){
     neovimConf
     envConf
     aliasConf
+    themeConf
 }
 
 read -p "Do you want to copy configurations for user [${USERNAME}]? (yes/no) " yn
