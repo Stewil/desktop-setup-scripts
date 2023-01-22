@@ -1,8 +1,9 @@
-@theme "/usr/share/rofi/themes/android_notification.rasi"
 configuration {
         show-icons:     true;
         icon-theme:     "Papirus";
 }
+
+@theme "/usr/share/rofi/themes/android_notification.rasi"
 
 listview {
         lines:          5;
@@ -11,3 +12,4 @@ listview {
 window {
         width:          25%;
 }
+
