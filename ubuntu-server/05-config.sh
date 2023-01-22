@@ -29,7 +29,7 @@ themeConf(){
     cp "$CFGDIR"/Xresources ~/.Xresources
     mkdir ~/.themes
     git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
-    git clone https://github.com/EliverLara/firefox-nordic-theme /tmp/firefox-nordic-theme/ && /tmp/firefox-nordic-theme/scripts/install.sh 
+    git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
     gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
     gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
 
