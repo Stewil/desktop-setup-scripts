@@ -1,4 +1,7 @@
 if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
+    setxkbmap -layout us,dk -option grp:shift_caps_toggle
+    export QT_QUICK_CONTROLS_STYLE=org.kde.breeze
+    export QT_QPA_PLATFORMTHEME=qt5ct
     startx
     wait
     exit

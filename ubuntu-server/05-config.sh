@@ -20,10 +20,6 @@ neovimConf(){
     cp -r "$CFGDIR"/nvim ~/.config/
 }
 
-envConf(){
-        cat "${CFGDIR}/profile" >> ~/.profile 
-}
-
 aliasConf(){
     cp -r "$CFGDIR"/aliases ~/.aliases
     echo "source ~/.aliases" >> ~/.bashrc
@@ -31,6 +27,7 @@ aliasConf(){
 
 themeConf(){
     cp "$CFGDIR"/Xresources ~/.Xresources
+    cp -r "$CFGDIR"/qt5ct/ ~/.config/
 }
 
 configure_user(){
@@ -38,7 +35,6 @@ configure_user(){
     rofiConf
     picomConf
     neovimConf
-    envConf
     aliasConf
     themeConf
 }

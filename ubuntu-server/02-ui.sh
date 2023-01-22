@@ -16,7 +16,7 @@ install_tools(){
     echo "INSTALLING FONTS"
     sudo apt install -y fonts-noto* fonts-font-awesome
     echo "INSTALLING THEMES"
-    sudo apt install -y breeze*
+    sudo apt install -y breeze* qt5ct
 }
 
 install_applications(){
