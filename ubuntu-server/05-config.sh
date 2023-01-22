@@ -30,7 +30,6 @@ aliasConf(){
 }
 
 themeConf(){
-    cp -r "$CFGDIR"/themes ~/.config/
     cp "$CFGDIR"/Xresources ~/.Xresources
 }
 
