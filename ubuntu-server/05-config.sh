@@ -1,6 +1,6 @@
 #!/bin/bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
+CFGDIR="${ROOTDIR}/config"
 USERNAME="$(whoami)"
 
 i3Conf(){
