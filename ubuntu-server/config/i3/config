@@ -156,7 +156,7 @@ bar {
 }
 
 # General settings that otherwise annoy me
-gaps inner 10
+# gaps inner 10 # only available in i3-gaps
 focus_follows_mouse no
 mouse_warping none
 for_window [class=".*"] border pixel 0
