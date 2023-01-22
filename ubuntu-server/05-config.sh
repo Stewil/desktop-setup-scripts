@@ -27,7 +27,14 @@ aliasConf(){
 
 themeConf(){
     cp "$CFGDIR"/Xresources ~/.Xresources
-    cp -r "$CFGDIR"/qt5ct/ ~/.config/
+    mkdir ~/.themes
+    wget -O /tmp/Nordic.tar.xz https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic.tar.xz
+    tar -xf /tmp/Nordic.tar.xz --directory ~/.themes
+    git clone https://github.com/EliverLara/firefox-nordic-theme /tmp/firefox-nordic-theme/ && /tmp/firefox-nordic-theme/scripts/install.sh 
+    gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+    gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+
+
 }
 
 configure_user(){

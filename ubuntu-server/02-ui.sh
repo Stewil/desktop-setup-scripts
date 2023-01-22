@@ -12,11 +12,9 @@ install_wm(){
 
 install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
-    sudo apt install -y systemsettings polkit-kde-agent-1 dolphin flameshot feh
+    sudo apt install -y policykit-1-gnome thunar flameshot feh
     echo "INSTALLING FONTS"
     sudo apt install -y fonts-noto* fonts-font-awesome
-    echo "INSTALLING THEMES"
-    sudo apt install -y breeze* qt5ct
 }
 
 install_applications(){
