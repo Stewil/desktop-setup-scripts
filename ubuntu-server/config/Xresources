@@ -1,0 +1,4 @@
+#include ".config/themes/solarized"
+*font:xft:Noto Sans Mono:style=Regular:size=11
+urxvt*depth: 32
+urxvt*background: [95]#002b36
