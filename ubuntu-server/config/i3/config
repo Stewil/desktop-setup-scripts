@@ -164,7 +164,7 @@ for_window [class=".*"] border pixel 0
 
 # shortcurts i like
 bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec dolphin
+bindsym $mod+F3 exec thunar
 bindsym XF86MonBrightnessUp exec brightnessctl -s set +50
 bindsym XF86MonBrightnessDown exec brightnessctl -s set 50-
 bindsym $mod+n exec --no-startup-id flash_window
