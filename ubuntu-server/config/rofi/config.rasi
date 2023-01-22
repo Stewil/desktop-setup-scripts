@@ -1,5 +1,13 @@
-configuration {
-	show-icons:	true;
-	icon-theme:	"Papirus";
-}
 @theme "/usr/share/rofi/themes/android_notification.rasi"
+configuration {
+        show-icons:     true;
+        icon-theme:     "Papirus";
+}
+
+listview {
+        lines:          5;
+}
+
+window {
+        width:          25%;
+}
