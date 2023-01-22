@@ -4,7 +4,7 @@ CFGDIR="${ROOTDIR}/config/"
 
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
-    sudo apt install -y i3-wm picom i3blocks i3status dunst rofi nitrogen arandr xinit scrot
+    sudo apt install -y i3-wm picom i3blocks i3lock i3status dunst rofi nitrogen arandr xinit scrot
     sudo apt install python-is-python3 python3-pip
     sudo apt install -y libxcb-render0-dev libffi-dev python3-dev python3-cffi
     python3 -m pip install flashfocus
