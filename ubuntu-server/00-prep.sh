@@ -8,8 +8,8 @@ remove_snap(){
     sudo systemctl disable snapd.socker
     sudo systemctl disable snapd.seeded.service
     echo "REMOVING ALL SNAP PACKAGES"
-    while [[ $(sudo snap list) ]]; do
-        sudo snap list | xargs sudo snap remove
+    while [[ $(sudo snap list | tail -n +2) ]]; do
+        sudo snap list |tail -n +2 | awk '{print $1}' | xargs sudo snap remove
     done
     echo "REMOVING SNAP"
     sudo apt autoremove --purge -y snapd
