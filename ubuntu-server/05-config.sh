@@ -30,10 +30,8 @@ themeConf(){
     mkdir ~/.themes
     git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
     git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
-    gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
-    gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
-
-
+    wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
+    cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
 
 configure_user(){
