@@ -24,7 +24,7 @@ add_firefox_ppa(){
     echo "ADDING FIREFOX APT PREFERENCES"
     sudo cp "${CFGDIR}/firefox-no-snap" /etc/apt/preferences.d/
     echo "ADDING PPA"
-    sudo add-apt-repository ppa:mozillateam/ppa
+    sudo add-apt-repository -y ppa:mozillateam/ppa
 }
 
 install_base_deps(){
