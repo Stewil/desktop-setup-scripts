@@ -9,7 +9,7 @@ remove_snap(){
     sudo systemctl disable snapd.seeded.service
     echo "REMOVING ALL SNAP PACKAGES"
     while [[ $(sudo snap list | tail -n +2) ]]; do
-        snaps=( $( sudo snap list |tail -n +2 | awk '{print $1}'  ) ) 
+        snaps=$(sudo snap list |tail -n +2 | awk '{print $1}')
         for i in $snaps; do
             sudo snap remove "$i" || echo "Error removing $i"
         done
