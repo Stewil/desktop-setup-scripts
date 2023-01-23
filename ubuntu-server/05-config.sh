@@ -34,6 +34,12 @@ themeConf(){
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
 
+powerlineConf(){
+    curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
+    echo "source ~/.bash-powerline.sh" >> ~/.bashrc
+    source ~/.bash-powerline.sh
+}
+
 configure_user(){
     i3Conf
     rofiConf
@@ -41,6 +47,7 @@ configure_user(){
     neovimConf
     aliasConf
     themeConf
+    powerlineConf
 }
 
 read -p "Do you want to copy configurations for user [${USERNAME}]? (yes/no) " yn
