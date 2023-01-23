@@ -11,7 +11,7 @@ remove_snap(){
     while [[ $(sudo snap list | tail -n +2) ]]; do
         snaps=( $( sudo snap list |tail -n +2 | awk '{print $1}'  ) ) 
         for i in $snaps; do
-            sudo snap remove "$i"
+            sudo snap remove "$i" || continue
         done
     done
     echo "REMOVING SNAP"
