@@ -10,7 +10,7 @@ remove_snap(){
     echo "REMOVING ALL SNAP PACKAGES"
     while [[ $(sudo snap list | tail -n +2) ]]; do
         snaps=( $( sudo snap list |tail -n +2 | awk '{print $1}'  ) ) 
-        for i in snaps; do
+        for i in $snaps; do
             sudo snap remove "$i"
         done
     done
