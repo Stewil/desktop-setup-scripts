@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
+CFGDIR=$ROOTDIR/config
 USERNAME="$(whoami)"
 
 config_i3(){
@@ -31,7 +32,7 @@ config_neovim(){
 
 config_aliases(){
     echo "CONFIGURING ALIASES"
-	cp -r "$CFGDIR"/aliases ~/
+	cp -r "$CFGDIR"/aliases ~/.aliases
     line="source /home/$USERNAME/.aliases"
     file="/home/$USERNAME/.bashrc"
     if ! grep -Fxq "$line" "$file"; then 
