@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-ROOTDIR=$(dirname $(realpath "$0"))
-source $ROOTDIR/arch-utils.sh
+ROOTDIR=$(cd $(dirname “${BASH_SOURCE:-$0}”) && pwd)
 echo "ROOT: $ROOTDIR"
+source $ROOTDIR/arch-utils.sh
 
 install_base(){
     echo "INSTALL BASE"
