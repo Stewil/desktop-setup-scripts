@@ -61,6 +61,7 @@ config_xinit(){
     echo "CONFIGURING XINIT"
 	cp "$CFGDIR"/xinitrc ~/.xinitrc
     cp "$CFGDIR"/bash_login ~/.bash_login
+    rm ~/.bash_profile
 }
 
 config_themes(){
