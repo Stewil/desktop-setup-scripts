@@ -17,7 +17,7 @@ setup_ubuntu_server(){
 
 setup_arch(){
     dir=$ROOTDIR/arch-i3
-    cd dir
+    cd $dir
     source 00-prep.sh
     source 01-network.sh
     source 02-ui.sh
