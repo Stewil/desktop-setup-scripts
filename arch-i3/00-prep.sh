@@ -14,7 +14,7 @@ setup_yay() {
 	sudo git clone https://aur.archlinux.org/yay.git
 	sudo chown -R $USER:$USER ./yay
 	cd - && cd /opt/yay 
-	makepkg -si
+	makepkg -si --noconfirm
 	cd -
 }
 
