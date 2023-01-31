@@ -4,7 +4,7 @@ CFGDIR=$ROOTDIR/config
 USERNAME="$(whoami)"
 
 config_i3(){
-    i3_dir='~/.config/i3/'
+    i3_dir='~/.config/i3'
 	cp -r "$CFGDIR"/i3 ~/.config/
     DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
