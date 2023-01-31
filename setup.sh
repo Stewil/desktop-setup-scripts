@@ -25,7 +25,7 @@ setup_arch(){
 }
 
 setup(){
-    DIST=$(lsb_release -is)
+    DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
         "Ubuntu") setup_ubuntu_server ;;
         "Arch") setup_arch ;;

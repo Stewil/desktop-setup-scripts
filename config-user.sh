@@ -7,10 +7,10 @@ source $ROOTDIR/utils.sh
 config_i3(){
     i3_dir='~/.config/i3/'
 	cp -r "$CFGDIR"/i3 ~/.config/
-    DIST=$(lsb_release -is)
+    DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
-        "Ubuntu") mv $i3_dir/ubuntu-config $i3_dir/config && rm $i3_dir/arch-config  ;;
-        "Arch") mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
+        "ubuntu") mv $i3_dir/ubuntu-config $i3_dir/config && rm $i3_dir/arch-config  ;;
+        "arch") mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
         *) mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
     esac
 }
