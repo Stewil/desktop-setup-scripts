@@ -27,8 +27,8 @@ setup_arch(){
 setup(){
     DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
-        "Ubuntu") setup_ubuntu_server ;;
-        "Arch") setup_arch ;;
+        "ubuntu") setup_ubuntu_server ;;
+        "arch") setup_arch ;;
         *) echo "No setup found for ${DIST}";;
     esac
 }
