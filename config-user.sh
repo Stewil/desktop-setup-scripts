@@ -34,7 +34,7 @@ config_aliases(){
 	cp -r "$CFGDIR"/.aliases ~/
     line="source /home/$USERNAME/.aliases"
     file="/home/$USERNAME/.bashrc"
-    if [ $(grep -Fxq "$line" "$file") -eq 1 ]; then 
+    if ! grep -Fxq "$line" "$file"; then 
 	    echo $line >> ~/.bashrc
     fi
 }
@@ -60,7 +60,7 @@ config_powerline(){
     curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
     line="source /home/$USERNAME/.bash-powerline.sh"
     file="/home/$USERNAME/.bashrc"
-    if [ $(grep -Fxq "$line" "$file") -eq 1 ]; then 
+    if ! grep -Fxq "$line" "$file"; then 
 	    echo $line >> ~/.bashrc
     fi
     source ~/.bash-powerline.sh
