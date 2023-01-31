@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
 USERNAME="$(whoami)"
-source $ROOTDIR/utils.sh
-
 
 config_i3(){
     i3_dir='~/.config/i3/'
@@ -33,9 +31,9 @@ config_neovim(){
 
 config_aliases(){
     echo "CONFIGURING ALIASES"
-    line="source ~/.aliases"
 	cp -r "$CFGDIR"/.aliases ~/
-    exists=$(EXISTS file="/home/$USERNAME/.bashrc" line=$line)
+    line="source /home/$USERNAME/.aliases"
+    exists=$(grep -Fxq "/home/$USERNAME/.bashrc" "$line")
     if [ $exists -eq 1 ]; then 
 	    echo $line >> ~/.bashrc
     fi
@@ -61,7 +59,7 @@ config_powerline(){
     echo "CONFIGURING THEMES"
     curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
     line="source /home/$USERNAME/.bash-powerline.sh"
-    exists=$(EXISTS file="/home/$USERNAME/.bashrc" line="$line")
+    exists=$(grep -Fxq "/home/$USERNAME/.bashrc" "$line")
     if [ $exists -eq 1 ]; then 
 	    echo $line >> ~/.bashrc
     fi
