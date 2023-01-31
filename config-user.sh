@@ -40,9 +40,10 @@ config_neovim(){
     echo "CONFIGURING NEOVIM"
     curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	cp -r "$CFGDIR"/nvim ~/.config/
-    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 100
-    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 100
-    sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 100
+    sudo ln -s /usr/bin/nvim /usr/bin/editor
+    sudo ln -s /usr/bin/nvim /usr/bin/edit
+    sudo ln -s /usr/bin/nvim /usr/bin/vi
+    sudo ln -s /usr/bin/nvim /usr/bin/nvim
 }
 
 config_aliases(){
@@ -64,7 +65,7 @@ config_xinit(){
 config_themes(){
     echo "CONFIGURING THEMES"
     cp "$CFGDIR"/Xresources ~/.Xresources
-    mkdir ~/.themes
+    mkdir -p ~/.themes
     git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
     git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
     wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
