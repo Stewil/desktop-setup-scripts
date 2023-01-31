@@ -43,7 +43,7 @@ config_neovim(){
     sudo ln -s /usr/bin/nvim /usr/bin/editor
     sudo ln -s /usr/bin/nvim /usr/bin/edit
     sudo ln -s /usr/bin/nvim /usr/bin/vi
-    sudo ln -s /usr/bin/nvim /usr/bin/nvim
+    sudo ln -s /usr/bin/nvim /usr/bin/vim
 }
 
 config_aliases(){
