@@ -44,6 +44,7 @@ config_neovim(){
     sudo ln -s /usr/bin/nvim /usr/bin/edit
     sudo ln -s /usr/bin/nvim /usr/bin/vi
     sudo ln -s /usr/bin/nvim /usr/bin/vim
+    nvim +PluginInstall +qall
 }
 
 config_aliases(){
