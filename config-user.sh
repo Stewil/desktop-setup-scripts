@@ -35,7 +35,7 @@ config_aliases(){
     echo "CONFIGURING ALIASES"
     line="source ~/.aliases"
 	cp -r "$CFGDIR"/.aliases ~/
-    exists=$(EXISTS file="~/.bashrc" line=$line)
+    exists=$(EXISTS file="/home/$USERNAME/.bashrc" line=$line)
     if [ $exists -eq 1 ]; then 
 	    echo $line >> ~/.bashrc
     fi
@@ -60,8 +60,8 @@ config_themes(){
 config_powerline(){
     echo "CONFIGURING THEMES"
     curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
-    line="source ~/.bash-powerline.sh"
-    exists=$(EXISTS file="~/.bashrc" line=$line)
+    line="source /home/$USERNAME/.bash-powerline.sh"
+    exists=$(EXISTS file="/home/$USERNAME/.bashrc" line="$line")
     if [ $exists -eq 1 ]; then 
 	    echo $line >> ~/.bashrc
     fi
