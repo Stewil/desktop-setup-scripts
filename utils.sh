@@ -6,11 +6,11 @@ EXISTS(){
     # call as:
     # EXISTS line='thisline' file='/home/file.txt'
     local "${@}"
-    if [ -z ${file+x} ]; then 
+    if [ -z "${file+x}" ]; then 
         echo "file to check was not given" && return -1
     fi
-    if [ -z ${line+x} ]; then 
+    if [ -z "${line+x}" ]; then 
         echo "line to check was not given" && return -1
     fi
-    return grep -Fxq "$line" "$file"
+    grep -Fxq "$line" "$file"
 }
