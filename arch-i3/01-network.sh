@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ROOTDIR=$(dirname $(realpath "$0"))
+ROOTDIR=$(readlink -f “${BASH_SOURCE:-$0}”)
 source $ROOTDIR/arch-utils.sh
 
 install_netman(){
