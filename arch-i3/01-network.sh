@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-ROOTDIR=$(readlink -f “${BASH_SOURCE:-$0}”)
+ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/arch-utils.sh
-echo "ROOT: $ROOTDIR"
 
 install_netman(){
     echo "INSTALL NETWORK MANAGER"

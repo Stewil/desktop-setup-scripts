@@ -7,21 +7,23 @@ setup_ubuntu_server(){
     dir=$ROOTDIR/ubuntu-i3
     echo "ADDING FIREFOX APT PREFERENCES"
     sudo cp "${CFGDIR}/firefox-no-snap" /etc/apt/preferences.d/
-    source $dir/00-prep.sh
-    source $dir/01-network.sh
-    source $dir/02-ui.sh
-    source $dir/03-audio.sh
-    source $dir/04-software.sh
+    cd $dir
+    source 00-prep.sh
+    source 01-network.sh
+    source 02-ui.sh
+    source 03-audio.sh
+    source 04-software.sh
 }
 
 setup_arch(){
     dir=$ROOTDIR/arch-i3
-    source $dir/00-prep.sh
-    source $dir/01-network.sh
-    source $dir/02-ui.sh
-    source $dir/03-audio.sh
-    source $dir/04-software.sh
-    source $dir/05-japanese.sh
+    cd dir
+    source 00-prep.sh
+    source 01-network.sh
+    source 02-ui.sh
+    source 03-audio.sh
+    source 04-software.sh
+    source 05-japanese.sh
 }
 
 setup(){
