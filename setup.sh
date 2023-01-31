@@ -13,6 +13,7 @@ setup_ubuntu_server(){
     source 02-ui.sh
     source 03-audio.sh
     source 04-software.sh
+    cp -
 }
 
 setup_arch(){
@@ -24,6 +25,7 @@ setup_arch(){
     source 03-audio.sh
     source 04-software.sh
     source 05-japanese.sh
+    cp -
 }
 
 setup(){
@@ -36,3 +38,4 @@ setup(){
 }
 
 setup
+source config-user.sh
