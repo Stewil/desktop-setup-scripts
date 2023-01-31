@@ -8,9 +8,21 @@ config_i3(){
 	cp -r "$CFGDIR"/i3 ~/.config/
     DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
-        "ubuntu") mv $i3_dir/ubuntu-config $i3_dir/config && rm $i3_dir/arch-config  ;;
-        "arch") mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
-        *) mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
+        "ubuntu")
+            echo "Configuring i3 for dist: $DIST"
+            mv $i3_dir/ubuntu-config $i3_dir/config
+            rm $i3_dir/arch-config
+            ;;
+        "arch") 
+            echo "Configuring i3 for dist: $DIST"
+            mv $i3_dir/arch-config $i3_dir/config
+            rm $i3_dir/ubuntu-config
+            ;;
+        *) 
+            echo "Configuring i3 for default, unknown dist: $DIST"
+            mv $i3_dir/arch-config $i3_dir/config
+            rm $i3_dir/ubuntu-config
+            ;;
     esac
 }
 
