@@ -7,7 +7,8 @@ source $ROOTDIR/utils.sh
 config_i3(){
     i3_dir='~/.config/i3/'
 	cp -r "$CFGDIR"/i3 ~/.config/
-    case DIST in
+    DIST=$(lsb_release -is)
+    case $DIST in
         "Ubuntu") mv $i3_dir/ubuntu-config $i3_dir/config && rm $i3_dir/arch-config  ;;
         "Arch") mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
         *) mv $i3_dir/arch-config $i3_dir/config && rm $i3_dir/ubuntu-config;;
@@ -26,6 +27,7 @@ config_picom(){
 
 config_neovim(){
     echo "CONFIGURING NEOVIM"
+    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	cp -r "$CFGDIR"/nvim ~/.config/
 }
 
@@ -41,7 +43,8 @@ config_aliases(){
 
 config_xinit(){
     echo "CONFIGURING XINIT"
-	cp "$CFGDIR"/.xinitrc ~/
+	cp "$CFGDIR"/xinitrc ~/.xinitrc
+    cp "$CFGDIR"/bash_login ~/.bash_login
 }
 
 config_themes(){

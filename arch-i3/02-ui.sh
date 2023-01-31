@@ -21,12 +21,6 @@ install_applications() {
     ADD thunar flameshot feh
 }
 
-conf_xinit(){
-    echo "CONFIGURING XINIT"
-    cp "$CFGDIR"/xinitrc ~/.xinitrc
-    cp "$CFGDIR"/bash_login ~/.bash_login
-}
-
 install_wm
 install_tools
 install_applications

@@ -2,6 +2,10 @@
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR="${ROOTDIR}/config/"
 
+ADD(){
+    sudo apt install -y --no-install-recommends "$@"
+}
+
 EXISTS(){
     # call as:
     # EXISTS line='thisline' file='/home/file.txt'
@@ -14,3 +18,4 @@ EXISTS(){
     fi
     return grep -Fxq "$line" "$file"
 }
+

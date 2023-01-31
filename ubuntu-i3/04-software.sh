@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
+source $ROOTDIR/ubuntu-utils.sh
 
 install_software(){
     echo "INSTALLING COMMONLY USED SOFTWARE"
-    sudo apt install -y neofetch zip unzip unrar tar 7zip gzip clang bash-completion rxvt-unicode
+    ADD neofetch zip unzip unrar tar 7zip gzip clang bash-completion rxvt-unicode
 }
 
 install_software

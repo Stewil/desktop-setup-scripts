@@ -1,11 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
-
+source $ROOTDIR/ubuntu-utils.sh
 
 install_networking(){
     echo "INSTALLING NETWORK-MANAGER"
-    sudo apt install -y network-manager avahi-daemon
+    ADD network-manager avahi-daemon
 }
 
 install_networking

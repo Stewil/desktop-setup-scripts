@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
+source $ROOTDIR/ubuntu-utils.sh
 
 install_audio(){
     echo "INSTALLING ALSA"
-    sudo apt install -y libasound2 libasound2-plugins alsa-utils alsa-oss
+    ADD libasound2 libasound2-plugins alsa-utils alsa-oss
     echo "INSTALLING PULSE"
-    sudo apt install -y pulseaudio pulseaudio-utils
+    ADD pulseaudio pulseaudio-utils
     echo "INSTALLING PAVUCONTROL"
-    sudo apt install -y pavucontrol
+    ADD pavucontrol
 }
 
 install_audio

@@ -5,6 +5,8 @@ source $ROOTDIR/utils.sh
 
 setup_ubuntu_server(){
     dir=$ROOTDIR/ubuntu-i3
+    echo "ADDING FIREFOX APT PREFERENCES"
+    sudo cp "${CFGDIR}/firefox-no-snap" /etc/apt/preferences.d/
     source $dir/00-prep.sh
     source $dir/01-network.sh
     source $dir/02-ui.sh
@@ -23,10 +25,11 @@ setup_arch(){
 }
 
 setup(){
-    case DIST in
+    DIST=$(lsb_release -is)
+    case $DIST in
         "Ubuntu") setup_ubuntu_server ;;
         "Arch") setup_arch ;;
-        *) echo "No setup found for $(DIST)";;
+        *) echo "No setup found for ${DIST}";;
     esac
 }
 
