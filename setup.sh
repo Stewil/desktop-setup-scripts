@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
+CFGDIR=$ROOTDIR/config
 USERNAME="$(whoami)"
-source $ROOTDIR/utils.sh
 
 setup_ubuntu_server(){
     dir=$ROOTDIR/ubuntu-i3
