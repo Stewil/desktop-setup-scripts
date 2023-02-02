@@ -4,7 +4,7 @@ source $ROOTDIR/ubuntu-utils.sh
 
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
-    ADD i3-wm picom i3blocks i3lock i3status dunst rofi nitrogen arandr xinit scrot
+    ADD xorg i3-wm picom i3blocks i3lock i3status dunst rofi nitrogen arandr xinit scrot
     ADD python-is-python3 python3-pip
     ADD libxcb-render0-dev libffi-dev python3-dev python3-cffi
     python3 -m pip install flashfocus
