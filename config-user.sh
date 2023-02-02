@@ -75,14 +75,14 @@ config_themes(){
 }
 
 config_powerline(){
-    echo "CONFIGURING THEMES"
-    curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
-    line="source /home/$USERNAME/.bash-powerline.sh"
-    file="/home/$USERNAME/.bashrc"
-    if ! grep -Fxq "$line" "$file"; then 
-	    echo $line >> ~/.bashrc
-    fi
-    source ~/.bash-powerline.sh
+    echo "CONFIGURING POWERLINE"
+    #curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
+    #line="source /home/$USERNAME/.bash-powerline.sh"
+    #file="/home/$USERNAME/.bashrc"
+    #if ! grep -Fxq "$line" "$file"; then 
+	#    echo $line >> ~/.bashrc
+    #fi
+    #source ~/.bash-powerline.sh
 }
 
 configure_user(){
