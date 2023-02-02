@@ -50,11 +50,7 @@ config_neovim(){
 config_aliases(){
     echo "CONFIGURING ALIASES"
 	cp -r "$CFGDIR"/aliases ~/.aliases
-    line="source /home/$USER/.aliases"
-    file="/home/$USER/.bashrc"
-    if ! grep -Fxq "$line" "$file"; then 
-	    echo $line >> ~/.bashrc
-    fi
+	cp -r "$CFGDIR"/bashrc ~/.bashrc
 }
 
 config_xinit(){
@@ -74,17 +70,6 @@ config_themes(){
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
 
-config_powerline(){
-    echo "CONFIGURING POWERLINE"
-    #curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
-    #line="source /home/$USER/.bash-powerline.sh"
-    #file="/home/$USER/.bashrc"
-    #if ! grep -Fxq "$line" "$file"; then 
-	#    echo $line >> ~/.bashrc
-    #fi
-    #source ~/.bash-powerline.sh
-}
-
 configure_user(){
     config_i3
     config_rofi
@@ -93,7 +78,6 @@ configure_user(){
     config_aliases
     config_xinit
     config_themes
-    config_powerline
 }
 
 configure_user
