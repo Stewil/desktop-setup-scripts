@@ -119,7 +119,7 @@ menu=(
   [ Reboot]="systemctl reboot"
   [ Suspend]="systemctl suspend"
   [ Lock]="~/.config/i3/scripts/blur-lock.sh"
-  [ Logout]="i3-msg exit"
+  [ Logout]="i3-msg exit && logout"
   [ Cancel]=""
 )
 
