@@ -13,6 +13,7 @@ setup_ubuntu_server(){
     ./02-ui.sh
     ./03-audio.sh
     ./04-software.sh
+    ./06-bluetooth.sh
     cd -
 }
 
@@ -25,6 +26,7 @@ setup_arch(){
     ./03-audio.sh
     ./04-software.sh
     ./05-japanese.sh
+    ./06-bluetooth.sh
     cd -
 }
 
