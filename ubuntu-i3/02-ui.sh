@@ -12,7 +12,7 @@ install_wm(){
 
 install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
-    ADD policykit-1-gnome thunar flameshot feh
+    ADD policykit-1-gnome thunar flameshot feh x11-xkb-utils
     echo "INSTALLING FONTS"
     ADD fonts-noto* fonts-font-awesome
 }
