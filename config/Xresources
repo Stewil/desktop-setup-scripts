@@ -67,7 +67,6 @@
 
 ! General conf
 *font: xft:DejaVu Sans Mono for Powerline:size=11, xft:Noto Sans Mono:style=Regular:size=11
-URxvt.letterSpace: -4
 URxvt.geometry: 82x-1
 urxvt*depth: 32
 urxvt*background: [95]S_base03
