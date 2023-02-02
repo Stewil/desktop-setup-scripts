@@ -4,6 +4,7 @@ CFGDIR=$ROOTDIR/config
 USERNAME="$(whoami)"
 
 setup_ubuntu_server(){
+    export DEBIAN_FRONTEND=noninteractive
     dir=$ROOTDIR/ubuntu-i3
     echo "ADDING FIREFOX APT PREFERENCES"
     sudo cp "${CFGDIR}/firefox-no-snap" /etc/apt/preferences.d/
