@@ -14,7 +14,9 @@ install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
     ADD policykit-1-gnome thunar flameshot feh x11-xkb-utils
     echo "INSTALLING FONTS"
-    ADD fonts-noto* fonts-font-awesome
+    ADD fonts-noto* 
+    git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install && cd -
+    git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
 }
 
 install_applications(){
