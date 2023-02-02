@@ -14,6 +14,7 @@ install_tools(){
     echo "INSTALLING FONTS"
     ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
     YADD ttf-font-awesome
+    mkdir -p /home/$USER/.local/share/fonts
     git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install && cd -
 }
 
