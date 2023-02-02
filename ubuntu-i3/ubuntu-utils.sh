@@ -3,7 +3,7 @@ ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR="${ROOTDIR}/config/"
 
 ADD(){
-    sudo apt install -y --no-install-recommends "$@"
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends "$@"
 }
 
 EXISTS(){
