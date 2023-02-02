@@ -15,7 +15,7 @@ install_tools(){
     ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
     YADD ttf-font-awesome
     mkdir -p /home/$USER/.local/share/fonts
-    git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install && cd -
+    git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh && cd -
 }
 
 install_applications() {
@@ -26,4 +26,3 @@ install_applications() {
 install_wm
 install_tools
 install_applications
-conf_xinit
