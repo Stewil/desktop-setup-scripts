@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
-USERNAME="$(whoami)"
 
 config_i3(){
-    i3_dir="/home/$USERNAME/.config/i3"
-	cp -r "$CFGDIR"/i3/ ~/.config/
+    i3_dir="/home/$USER/.config/i3"
     DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     case $DIST in
         "ubuntu")
             echo "Configuring i3 for dist: $DIST"
+	        cp -r "$CFGDIR"/i3 ~/.config/
             mv $i3_dir/ubuntu-config $i3_dir/config
             rm $i3_dir/arch-config
             ;;
         "arch") 
             echo "Configuring i3 for dist: $DIST"
+	        cp -r "$CFGDIR"/i3/ ~/.config/
             mv $i3_dir/arch-config $i3_dir/config
             rm $i3_dir/ubuntu-config
             ;;
@@ -50,8 +50,8 @@ config_neovim(){
 config_aliases(){
     echo "CONFIGURING ALIASES"
 	cp -r "$CFGDIR"/aliases ~/.aliases
-    line="source /home/$USERNAME/.aliases"
-    file="/home/$USERNAME/.bashrc"
+    line="source /home/$USER/.aliases"
+    file="/home/$USER/.bashrc"
     if ! grep -Fxq "$line" "$file"; then 
 	    echo $line >> ~/.bashrc
     fi
@@ -77,8 +77,8 @@ config_themes(){
 config_powerline(){
     echo "CONFIGURING POWERLINE"
     #curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
-    #line="source /home/$USERNAME/.bash-powerline.sh"
-    #file="/home/$USERNAME/.bashrc"
+    #line="source /home/$USER/.bash-powerline.sh"
+    #file="/home/$USER/.bashrc"
     #if ! grep -Fxq "$line" "$file"; then 
 	#    echo $line >> ~/.bashrc
     #fi
