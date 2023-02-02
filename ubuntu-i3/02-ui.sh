@@ -18,6 +18,7 @@ install_tools(){
     mkdir -p /home/$USER/.local/share/fonts
     git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh && cd -
     git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
+    fc-cache -f -v
 }
 
 install_applications(){
