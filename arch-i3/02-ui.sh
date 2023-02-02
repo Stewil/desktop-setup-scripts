@@ -10,7 +10,7 @@ install_wm(){
 
 install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
-    ADD polkit-gnome arandr nitrogen dunst rofi powerline powerline-fonts
+    ADD polkit-gnome arandr nitrogen dunst rofi powerline powerline-fonts firefox
     echo "INSTALLING FONTS"
     ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
     YADD ttf-font-awesome
