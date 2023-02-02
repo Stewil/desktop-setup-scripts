@@ -1,3 +1,7 @@
 Package: *
 Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 1001
+
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
