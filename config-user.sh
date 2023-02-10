@@ -79,6 +79,7 @@ configure_user(){
     config_i3
     config_rofi
     config_picom
+    config_powerline
     config_neovim
     config_aliases
     config_xinit
