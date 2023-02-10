@@ -36,6 +36,11 @@ config_picom(){
 	cp -r "$CFGDIR"/picom ~/.config/
 }
 
+config_powerline(){
+    echo "CONFIGURING POWERLINE"
+	cp -r "$CFGDIR"/powerline ~/.config/
+}
+
 config_neovim(){
     echo "CONFIGURING NEOVIM"
     curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
