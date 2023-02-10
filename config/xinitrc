@@ -33,4 +33,4 @@ fi
 
 export GTK_THEME=Nordic
 export TERMINAL=urxvt
-exec i3
+exec dbus-launch --exit-with-session i3
