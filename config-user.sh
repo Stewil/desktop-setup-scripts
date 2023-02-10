@@ -3,27 +3,8 @@ ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
 
 config_i3(){
-    i3_dir="/home/$USER/.config/i3"
-    DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
-    case $DIST in
-        "ubuntu")
-            echo "Configuring i3 for dist: $DIST"
-	        cp -r "$CFGDIR"/i3 ~/.config/
-            mv $i3_dir/ubuntu-config $i3_dir/config
-            rm $i3_dir/arch-config
-            ;;
-        "arch") 
-            echo "Configuring i3 for dist: $DIST"
-	        cp -r "$CFGDIR"/i3/ ~/.config/
-            mv $i3_dir/arch-config $i3_dir/config
-            rm $i3_dir/ubuntu-config
-            ;;
-        *) 
-            echo "Configuring i3 for default, unknown dist: $DIST"
-            mv $i3_dir/arch-config $i3_dir/config
-            rm $i3_dir/ubuntu-config
-            ;;
-    esac
+    echo "CONFIGURING I3"
+	cp -r "$CFGDIR"/i3 ~/.config/
 }
 
 config_rofi(){
