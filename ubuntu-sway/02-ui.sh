@@ -4,7 +4,7 @@ source $ROOTDIR/ubuntu-utils.sh
 
 install_desktop(){
     echo "INSTALLING DESKTOP"
-    ADD libwayland-bin libwayland-client0 libwayland-cursor0libwayland-egl1 libwayland-server0 seatd sway foot gdm3 policykit-1-gnome dunst rofi dmenu scrot sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock nemo flameshot wlr-randr wlogout mpv firefox 
+    ADD libwayland-bin libwayland-client0 libwayland-cursor0 libwayland-egl1 libwayland-server0 seatd sway foot gdm3 policykit-1-gnome dunst rofi dmenu scrot sway-backgrounds swaybg swayidle swayimg swaylock nemo flameshot wlr-randr wlogout mpv firefox 
     ADD python-is-python3 python3-pip
     wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && sudo apt install -y /tmp/nvim-linux64.deb
     echo "INSTALLING FONTS"
