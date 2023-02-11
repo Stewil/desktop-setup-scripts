@@ -8,7 +8,7 @@ install_desktop(){
     ADD python-is-python3 python3-pip
     wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && sudo apt install -y /tmp/nvim-linux64.deb
     echo "INSTALLING FONTS"
-    ADD fonts-noto* 
+    ADD fonts-noto* fontconfig
     mkdir -p /home/$USER/.local/share/fonts
     git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh && cd -
     git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
