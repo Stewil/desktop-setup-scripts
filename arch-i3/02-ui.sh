@@ -11,7 +11,7 @@ install_wm(){
 
 install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
-    ADD polkit-gnome arandr nitrogen dunst rofi powerline powerline-fonts firefox
+    ADD polkit-gnome arandr nitrogen dunst rofi powerline powerline-fonts firefox acpi
     echo "INSTALLING FONTS"
     ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
     YADD ttf-font-awesome
@@ -22,7 +22,7 @@ install_tools(){
 
 install_applications() {
     echo "INSTALLING APPLICATIONS"
-    ADD thunar flameshot feh
+    ADD thunar flameshot feh thunar-volman gvfs gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs
 }
 
 install_wm

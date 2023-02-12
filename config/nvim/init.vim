@@ -42,7 +42,8 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
-set mouse=
+set mouse=a
+map <LeftMouse> <Nop>
 :set tabstop=4
 :set shiftwidth=4
 :set expandtab

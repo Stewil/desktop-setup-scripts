@@ -24,7 +24,9 @@ config_powerline(){
 
 config_neovim(){
     echo "CONFIGURING NEOVIM"
-    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 	cp -r "$CFGDIR"/nvim ~/.config/
     sudo ln -s /usr/bin/nvim /usr/bin/editor
     sudo ln -s /usr/bin/nvim /usr/bin/edit
@@ -50,10 +52,33 @@ config_themes(){
     echo "CONFIGURING THEMES"
     cp "$CFGDIR"/Xresources ~/.Xresources
     mkdir -p ~/.themes
-    git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
-    git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
-    wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
+    if [ ! -d ~/.themes/Nordic ]; then
+        git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
+    fi
+    if [ ! -d ~/.themes/firefox-nordic-theme ]; then
+        git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
+    fi
+    if [ ! -d ~/.local/share/icons/Zafiro-Icons-Dark/ ]; then
+        wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
+    fi
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
+}
+
+config_touchpad(){
+    echo "CONFIGURING TOUCHPAD"
+    sudo cp "$CFGDIR"/71-synaptics.conf /usr/share/X11/xorg.conf.d/71-synaptics.conf
+
+}
+
+config_pcspkr(){
+    echo "CONFIGURING TOUCHPAD"
+    sudo cp "$CFGDIR"/nobeep.conf /etc/modprobe.d/nobeep.conf
+
+}
+
+config_defaults(){
+    echo "CONFIGURING DEFAULT APPLICATIONS"
+    xdg-mime default thunar.desktop inode/directory
 }
 
 configure_user(){
@@ -61,10 +86,12 @@ configure_user(){
     config_rofi
     config_picom
     config_powerline
-    config_neovim
     config_aliases
     config_xinit
+    config_neovim
     config_themes
+    config_touchpad
+    config_pcspkr
 }
 
 configure_user
