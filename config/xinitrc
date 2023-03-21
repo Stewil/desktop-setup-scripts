@@ -33,5 +33,5 @@ fi
 
 export GTK_THEME=Nordic
 export TERMINAL=urxvt
-xset r rate 200 35
+xset r rate 250 35
 exec dbus-launch --exit-with-session i3
