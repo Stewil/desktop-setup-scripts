@@ -32,9 +32,10 @@ install_tools(){
 install_applications(){
     echo "INSTALLING APPLICATIONS"
     ADD firefox
-    wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb \
-        && sudo apt install -y /tmp/nvim-linux64.deb
-
+    if [ ! -f /usr/bin/nvim ]; then
+        wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb \
+            && sudo apt install -y /tmp/nvim-linux64.deb
+    fi
 }
 
 install_wm
