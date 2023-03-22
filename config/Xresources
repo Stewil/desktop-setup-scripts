@@ -71,7 +71,7 @@ URxvt.geometry: 82x-1
 urxvt*depth: 32
 urxvt*background: [95]S_base03
 URxvt.internalBorder:  20
-urxvt*scrollBar:false
+URxvt.scrollBar:false
 urxvt.url-launcher: /usr/bin/xdg-open
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
