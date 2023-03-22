@@ -4,7 +4,7 @@ source $ROOTDIR/ubuntu-utils.sh
 
 install_bluetooth(){
     echo "INSTALLING BLUETOOTH TOOLS"
-    ADD bluez bluez-utils blueman
+    ADD bluez bluez-tools blueman
     echo "LOADING BLUETOOTH MODULE"
     sudo modprobe btusb
     echo "ENABLING BLUETOOTH SERVICE"
