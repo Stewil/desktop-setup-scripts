@@ -17,16 +17,23 @@ install_tools(){
     ADD policykit-1-gnome thunar flameshot sxiv x11-xkb-utils mpv
     echo "INSTALLING FONTS"
     ADD fonts-noto* 
+    if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then
     mkdir -p /home/$USER/.local/share/fonts
-    git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh && cd -
-    git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
+        git clone https://github.com/powerline/fonts.git --depth=1 /tmp/fonts \
+            && cd /tmp/fonts && ./install.sh && cd -
+    fi
+    if [ ! -f "$HOME/.local/share/fonts/Font Awesome 6 Free-Regular-400.otf" ]; then
+        git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && \
+            cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
+    fi
     fc-cache -f -v
 }
 
 install_applications(){
     echo "INSTALLING APPLICATIONS"
     ADD firefox
-    wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && sudo apt install -y /tmp/nvim-linux64.deb
+    wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb \
+        && sudo apt install -y /tmp/nvim-linux64.deb
 
 }
 

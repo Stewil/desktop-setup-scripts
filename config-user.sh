@@ -103,6 +103,7 @@ config_defaults(){
 
 config_wallpaper(){
     echo "CONFIGURING WALLPAPER"
+    if [ ! -f ~/Pictures/wp/bg.jpg ]; then
     mkdir -p ~/Pictures/wp
     wget -O ~/Pictures/wp/bg.jpg \
         --referer='https://www.pixiv.net/en/artworks/85281138' \
@@ -114,21 +115,23 @@ file=$HOME/Pictures/wp/bg.jpg
 mode=4
 bgcolor=#000000
 EOF
+    fi
 }
 
 config_greeter(){
     echo "CONFIGURING GREETER"
+    if [ ! -f /usr/share/pixmaps/greeter.jpg ]; then
     sudo mkdir -p /usr/share/pixmaps
     sudo wget -O /usr/share/pixmaps/greeter.jpg \
         --referer='https://www.pixiv.net/en/artworks/91390457' \
         https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg
-    sudo tee /etc/ <<EOF
+    sudo tee /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
 position = 15%,center 70%,center
 background = /usr/share/pixmaps/greeter.jpg
 user-background = true
 theme-name = Adwaita-dark
 EOF
-
+    fi
 }
 
 configure_user(){

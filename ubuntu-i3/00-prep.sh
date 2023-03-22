@@ -9,6 +9,7 @@ remove_auto_update(){
 
 
 remove_snap(){
+    if [ dpkg -l snapd ]; then
     echo "DISABLING SNAP SERVICE"
     sudo systemctl disable snapd.service
     sudo systemctl disable snapd.socker
@@ -25,6 +26,7 @@ remove_snap(){
     sudo rm -rf /var/cache/snapd/
     rm -rf ~/snap
     sudo systemctl daemon-reload
+    fi
 }
 
 add_firefox_ppa(){
