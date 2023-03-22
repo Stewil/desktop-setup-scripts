@@ -86,15 +86,19 @@ config_pcspkr(){
 config_defaults(){
     echo "CONFIGURING DEFAULT APPLICATIONS"
     xdg-mime default thunar.desktop inode/directory
-    xdg-mime default sxiv.desktop image/
+    xdg-mime default sxiv.desktop image/bmp image/gif image/jpeg image/jpg \
+        image/png image/tiff image/x-bmp image/x-portable-anymap \
+        image/x-portable-bitmap image/x-portable-greymap image/x-tga \
+        image/x-xpixmap
     sed "s/Exec=.*/Exec=sxiv -a %F/g" \
         /usr/share/applications/sxiv.desktop \
         | sudo tee /usr/share/applications/sxiv.desktop
-    xdg-mime default firefox.desktop text/markdown
-    xdg-mime default firefox.desktop text/html
-    xdg-mime default firefox.desktop application/pdf
-    xdg-mime default firefox.desktop x-scheme-handler/*
-    xdg-mime default mpv.desktop video/*
+    xdg-mime default firefox.desktop text/markdown text/html application/pdf \
+        x-scheme-handler/http x-scheme-handler/https x-scheme-handler/unknown
+    xdg-mime default mpv.desktop video/mpeg video/x-mpeg2 video/x-mpeg3 \
+        video/x-m4v video/ogg video/quicktime video/flv video/x-flv \
+        video/x-matroska video/mkv video/webm video/3gp video/3gpp video/mp4
+    xdg-settings set default-web-browser firefox.desktop
 }
 
 config_wallpaper(){
