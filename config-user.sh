@@ -125,12 +125,14 @@ config_greeter(){
     sudo wget -O /usr/share/pixmaps/greeter.jpg \
         --referer='https://www.pixiv.net/en/artworks/91390457' \
         https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg
-    sudo tee /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
+    if [ ! $(grep -q greeter.jpg /etc/lightdm/lightdm-gtk-greeter.conf) ]; then
+    sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
 position = 15%,center 70%,center
 background = /usr/share/pixmaps/greeter.jpg
 user-background = true
 theme-name = Adwaita-dark
 EOF
+    fi
     fi
 }
 
