@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# thanks to https://www.pixiv.net/en/users/21549100 for the lovely bg illustration
+# thanks to https://www.pixiv.net/en/users/3069527 for the lovely greeter illustration
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
 
@@ -64,6 +66,11 @@ config_themes(){
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
 
+config_lightdm(){
+    echo "CONFIGURING LIGHTDM"
+	sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
+}
+
 config_touchpad(){
     echo "CONFIGURING TOUCHPAD"
     sudo cp "$CFGDIR"/71-synaptics.conf /usr/share/X11/xorg.conf.d/71-synaptics.conf
@@ -71,7 +78,7 @@ config_touchpad(){
 }
 
 config_pcspkr(){
-    echo "CONFIGURING TOUCHPAD"
+    echo "CONFIGURING PCSPKR"
     sudo cp "$CFGDIR"/nobeep.conf /etc/modprobe.d/nobeep.conf
 
 }
@@ -79,6 +86,45 @@ config_pcspkr(){
 config_defaults(){
     echo "CONFIGURING DEFAULT APPLICATIONS"
     xdg-mime default thunar.desktop inode/directory
+    xdg-mime default sxiv.desktop image/
+    sed "s/Exec=.*/Exec=sxiv -a %F/g" \
+        /usr/share/applications/sxiv.desktop \
+        | sudo tee /usr/share/applications/sxiv.desktop
+    xdg-mime default firefox.desktop text/markdown
+    xdg-mime default firefox.desktop text/html
+    xdg-mime default firefox.desktop application/pdf
+    xdg-mime default firefox.desktop x-scheme-handler/*
+    xdg-mime default mpv.desktop video/*
+}
+
+config_wallpaper(){
+    echo "CONFIGURING WALLPAPER"
+    mkdir -p ~/Pictures/wp
+    wget -O ~/Pictures/wp/bg.jpg \
+        --referer='https://www.pixiv.net/en/artworks/85281138' \
+        https://i.pximg.net/img-original/img/2020/10/27/23/47/17/85281138_p0.jpg
+    mkdir -p ~/.config/nitrogen
+    sudo tee ~/.config/nitrogen/bg-saved.cfg <<EOF
+[xin_-1]
+file=$HOME/Pictures/wp/bg.jpg
+mode=4
+bgcolor=#000000
+EOF
+}
+
+config_greeter(){
+    echo "CONFIGURING GREETER"
+    sudo mkdir -p /usr/share/pixmaps
+    sudo wget -O /usr/share/pixmaps/greeter.jpg \
+        --referer='https://www.pixiv.net/en/artworks/91390457' \
+        https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg
+    sudo tee /etc/ <<EOF
+position = 15%,center 70%,center
+background = /usr/share/pixmaps/greeter.jpg
+user-background = true
+theme-name = Adwaita-dark
+EOF
+
 }
 
 configure_user(){
@@ -92,6 +138,9 @@ configure_user(){
     config_themes
     config_touchpad
     config_pcspkr
+    config_lightdm
+    config_wallpaper
+    config_greeter
 }
 
 configure_user

@@ -4,7 +4,7 @@ source $ROOTDIR/arch-utils.sh
 
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
-    ADD picom i3-wm i3status i3blocks i3lock xorg-xinit 
+    ADD picom i3-wm i3status i3blocks i3lock xorg-xinit lightdm lightdm-gtk-greeter gnome-themes-extra
     ADD dbus at-spi2-core
     YADD flashfocus-git
 }
@@ -22,7 +22,7 @@ install_tools(){
 
 install_applications() {
     echo "INSTALLING APPLICATIONS"
-    ADD thunar flameshot feh thunar-volman gvfs gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs
+    ADD thunar flameshot sxiv thunar-volman gvfs gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs
 }
 
 install_wm

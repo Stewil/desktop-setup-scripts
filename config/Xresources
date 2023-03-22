@@ -88,3 +88,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
+
+! sxiv
+Sxiv.font: Noto sans
+

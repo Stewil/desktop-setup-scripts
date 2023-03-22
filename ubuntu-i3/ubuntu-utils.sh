@@ -6,6 +6,10 @@ ADD(){
     sudo DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends "$@"
 }
 
+REMOVE(){
+    sudo DEBIAN_FRONTEND=noninteractive apt purge -y "$@"
+}
+
 EXISTS(){
     # call as:
     # EXISTS line='thisline' file='/home/file.txt'
