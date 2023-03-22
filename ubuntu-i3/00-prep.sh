@@ -9,7 +9,7 @@ remove_auto_update(){
 
 
 remove_snap(){
-    if [ dpkg -l snapd ]; then
+    if dpkg -s snapd ; then
     echo "DISABLING SNAP SERVICE"
     sudo systemctl disable snapd.service
     sudo systemctl disable snapd.socker
