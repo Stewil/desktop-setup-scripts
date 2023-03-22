@@ -14,7 +14,7 @@ install_wm(){
 
 install_tools(){
     echo "INSTALLING VARIOUS TOOLS"
-    ADD policykit-1-gnome thunar flameshot sxiv x11-xkb-utils mpv
+    ADD policykit-1-gnome thunar flameshot sxiv x11-xkb-utils mpv powerline
     echo "INSTALLING FONTS"
     ADD fonts-noto* 
     if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then

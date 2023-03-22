@@ -6,7 +6,7 @@ CFGDIR=$ROOTDIR/config
 
 config_i3(){
     echo "CONFIGURING I3"
-	cp -r "$CFGDIR"/i3 ~/.config/
+	cp -r "$CFGDIR"/i3/ ~/.config/
 }
 
 config_rofi(){
