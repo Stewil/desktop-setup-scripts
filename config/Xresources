@@ -91,4 +91,5 @@ URxvt*scrollTtyKeypress:    true
 
 ! sxiv
 Sxiv.font: Noto sans
+Nsxiv.bar.font: Noto sans
 
