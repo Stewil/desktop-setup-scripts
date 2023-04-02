@@ -6,12 +6,12 @@ logout(){
 powerline-daemon -q
 if [ "$(tty)" = "/dev/tty1" ]; then
     export XTERM='urxvt'
-    if [ -f "/home/$USER/.config/i3/config" ]; then
+    if [ -f "$HOME/.config/i3/config" ]; then
         startx 
     else
         echo "i3 config not found. refusing to start x"
     fi
 else
-    source /home/$USER/.bashrc
+    source $HOME/.bashrc
 fi
 

@@ -18,13 +18,13 @@ install_tools(){
     echo "INSTALLING FONTS"
     ADD fonts-noto* 
     if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then
-    mkdir -p /home/$USER/.local/share/fonts
+    mkdir -p $HOME/.local/share/fonts
         sudo bash -c "git clone https://github.com/powerline/fonts.git \
             --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh"
     fi
     if [ ! -f "$HOME/.local/share/fonts/Font Awesome 6 Free-Regular-400.otf" ]; then
         git clone https://github.com/FortAwesome/Font-Awesome /tmp/fa && \
-            cp /tmp/fa/otfs/* /home/$USER/.local/share/fonts/
+            cp /tmp/fa/otfs/* $HOME/.local/share/fonts/
     fi
     if [ ! -f /usr/local/bin/nsxiv ]; then
         sudo bash -c "git clone https://codeberg.org/nsxiv/nsxiv /tmp/nsxiv && \

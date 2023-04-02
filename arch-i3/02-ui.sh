@@ -16,7 +16,7 @@ install_tools(){
     ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
     YADD ttf-font-awesome
     if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then
-    mkdir -p /home/$USER/.local/share/fonts
+    mkdir -p "$HOME/.local/share/fonts"
         sudo bash -c "git clone https://github.com/powerline/fonts.git \
             --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh"
     fi
