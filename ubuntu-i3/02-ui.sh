@@ -2,6 +2,11 @@
 ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
+install_drivers(){
+    echo 'INSTALLING DRIVVERS'
+    sudo ubuntu-drivers autoinstall
+}
+
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
     ADD xorg i3-wm picom i3blocks i3lock i3status dunst rofi nitrogen arandr xinit scrot lightdm lightdm-gtk-greeter gnome-themes-extra
@@ -42,6 +47,7 @@ install_applications(){
     fi
 }
 
+install_drivers
 install_wm
 install_tools
 install_applications
