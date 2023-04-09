@@ -67,8 +67,11 @@ config_themes(){
 }
 
 config_lightdm(){
-    echo "CONFIGURING LIGHTDM"
-	sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
+    DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
+    if [ "$DIST" != "ubuntu" ]; then
+        echo "CONFIGURING LIGHTDM"
+        sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
+    fi
 }
 
 config_touchpad(){
