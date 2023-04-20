@@ -37,6 +37,19 @@ config_neovim(){
     nvim +PlugInstall +qall
 }
 
+config_nerdfont(){
+    echo "CONFIGURING NERDFONTS"
+    NFDIR="/usr/share/fonts/truetype/nerdfonts"
+    if [ ! -d "$NFDIR" ]; then
+        mkdir -p "$NFDIR"
+    fi
+    if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
+        echo "INSTALLING NERDFONT: HACK"
+        wget -o /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
+        sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || echo 'ERROR INSTALLING NF HACK'"
+    fi
+}
+
 config_aliases(){
     echo "CONFIGURING ALIASES"
 	cp -r "$CFGDIR"/aliases ~/.aliases
@@ -143,7 +156,7 @@ configure_user(){
     config_picom
     config_powerline
     config_aliases
-    config_xinit
+    config_nerdfont
     config_neovim
     config_themes
     config_touchpad
