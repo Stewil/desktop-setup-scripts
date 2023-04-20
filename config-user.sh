@@ -17,12 +17,12 @@ config_rofi(){
 
 config_picom(){
     echo "CONFIGURING PICOM"
-	cp -r "$CFGDIR"/picom ~/.config/
+    cp -r "$CFGDIR"/picom ~/.config/
 }
 
 config_powerline(){
     echo "CONFIGURING POWERLINE"
-	cp -r "$CFGDIR"/powerline ~/.config/
+    cp -r "$CFGDIR"/powerline ~/.config/
 }
 
 config_neovim(){
@@ -30,7 +30,7 @@ config_neovim(){
     if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
         curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
-	cp -r "$CFGDIR"/nvim ~/.config/
+    cp -r "$CFGDIR"/nvim ~/.config/
     sudo ln -s /usr/bin/nvim /usr/bin/editor
     sudo ln -s /usr/bin/nvim /usr/bin/edit
     sudo ln -s /usr/bin/nvim /usr/bin/vi
@@ -53,13 +53,13 @@ config_nerdfont(){
 
 config_aliases(){
     echo "CONFIGURING ALIASES"
-	cp -r "$CFGDIR"/aliases ~/.aliases
-	cp -r "$CFGDIR"/bashrc ~/.bashrc
+    cp -r "$CFGDIR"/aliases ~/.aliases
+    cp -r "$CFGDIR"/bashrc ~/.bashrc
 }
 
 config_xinit(){
     echo "CONFIGURING XINIT"
-	cp "$CFGDIR"/xinitrc ~/.xinitrc
+    cp "$CFGDIR"/xinitrc ~/.xinitrc
     cp "$CFGDIR"/bash_login ~/.bash_login
     rm ~/.bash_profile
 }
