@@ -173,20 +173,20 @@ EOF
 }
 
 configure_user(){
-    config_i3
-    config_rofi
-    config_picom
-    config_powerline
-    config_tab_completion
-    config_aliases
-    config_nerdfont
-    config_neovim
-    config_themes
-    config_touchpad
-    config_pcspkr
-    config_lightdm
-    config_wallpaper
-    config_greeter
+    config_i3 > /dev/null
+    config_rofi > /dev/null
+    config_picom > /dev/null
+    config_powerline > /dev/null
+    config_tab_completion > /dev/null
+    config_aliases > /dev/null
+    config_nerdfont > /dev/null
+    config_neovim > /dev/null
+    config_themes > /dev/null
+    config_touchpad > /dev/null
+    config_pcspkr > /dev/null
+    config_lightdm > /dev/null
+    config_wallpaper > /dev/null
+    config_greeter > /dev/null
 }
 
 configure_user
