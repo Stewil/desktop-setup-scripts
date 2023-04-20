@@ -45,7 +45,7 @@ config_nerdfont(){
     fi
     if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
         echo "INSTALLING NERDFONT: HACK"
-        wget -o /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
+        wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
         sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || echo 'ERROR INSTALLING NF HACK'"
     fi
 }
