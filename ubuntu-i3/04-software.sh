@@ -6,7 +6,6 @@ install_software(){
     echo "INSTALLING COMMONLY USED SOFTWARE"
     ADD neofetch zip unzip unrar tar 7zip gzip clang bash-completion rxvt-unicode file \
         libimlib2
-    REMOVE xfce4-terminal xterm
 }
 
 install_software
