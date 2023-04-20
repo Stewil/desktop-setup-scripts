@@ -25,6 +25,14 @@ config_powerline(){
     cp -r "$CFGDIR"/powerline ~/.config/
 }
 
+config_tab_completion(){
+    echo "CONFIGURING TAB COMPLETION"
+    if [ ! -a ~/.inputrc ]; then
+        echo '$include /etc/inputrc' > ~/.inputrc
+        echo 'set completion-ignore-case On' >> ~/.inputrc
+    fi
+}
+
 config_neovim(){
     echo "CONFIGURING NEOVIM"
     if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
@@ -158,6 +166,7 @@ configure_user(){
     config_rofi
     config_picom
     config_powerline
+    config_tab_completion
     config_aliases
     config_nerdfont
     config_neovim
