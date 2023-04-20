@@ -42,7 +42,7 @@ config_nerdfont(){
     echo "CONFIGURING NERDFONTS"
     NFDIR="/usr/share/fonts/truetype/nerdfonts"
     if [ ! -d "$NFDIR" ]; then
-        mkdir -p "$NFDIR"
+        sudo mkdir -p "$NFDIR"
     fi
     if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
         echo "INSTALLING NERDFONT: HACK"
