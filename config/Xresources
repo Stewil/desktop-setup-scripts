@@ -46,7 +46,7 @@
 
 ! Dracula Xresources palette
 ! https://github.com/dracula/xresources
-*.foreground: #F8F8F2
+!*.foreground: #F8F8F2
 *.background: #282A36
 *.color0:     #000000
 *.color8:     #4D4D4D
