@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
+DEBIAN_FRONTEND=noninteractive
 
 install_drivers(){
     echo 'INSTALLING DRIVERS'
@@ -43,7 +44,7 @@ install_applications(){
     echo "INSTALLING APPLICATIONS" 
     ADD firefox > /dev/null
     if [ ! -f /usr/bin/nvim ]; then
-        wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz > /dev/null
+        wget -q -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz > /dev/null
         sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz > /dev/null && cp -r nvim-linux64/* /usr/local/  > /dev/null|| echo 'INSTALLING NEOVIM FAILED'"
     fi
 }
