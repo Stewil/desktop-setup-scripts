@@ -3,23 +3,9 @@ ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR="${ROOTDIR}/config/"
 
 ADD(){
-    sudo pacman -Sy --noconfirm --needed "$@"
+    sudo pacman -Sy --noconfirm --needed "$@" > /dev/null
 }
 
 YADD(){
-	yay -Sy --noconfirm --needed "$@"
+	yay -Sy --noconfirm --needed "$@" > /dev/null
 }
-
-EXISTS(){
-    # call as:
-    # EXISTS line='thisline' file='/home/file.txt'
-    local "${@}"
-    if [ -z ${file+x} ]; then 
-        echo "file to check was not given" && return -1
-    fi
-    if [ -z ${line+x} ]; then 
-        echo "line to check was not given" && return -1
-    fi
-    return grep -Fxq "$line" "$file"
-}
-

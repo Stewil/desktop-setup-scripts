@@ -13,4 +13,4 @@ install_bluetooth(){
     sudo systemctl start bluetooth
 }
 
-install_bluetooth
+install_bluetooth > /dev/null

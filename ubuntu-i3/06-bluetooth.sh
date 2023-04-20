@@ -6,10 +6,10 @@ install_bluetooth(){
     echo "INSTALLING BLUETOOTH TOOLS"
     ADD bluez bluez-tools blueman
     echo "LOADING BLUETOOTH MODULE"
-    sudo modprobe btusb > /dev/null
+    sudo modprobe btusb
     echo "ENABLING BLUETOOTH SERVICE"
-    sudo systemctl enable bluetooth > /dev/null
-    sudo systemctl start bluetooth > /dev/null
+    sudo systemctl enable bluetooth
+    sudo systemctl start bluetooth
 }
 
-install_bluetooth
+install_bluetooth > /dev/null

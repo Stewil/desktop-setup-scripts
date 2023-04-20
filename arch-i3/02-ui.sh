@@ -32,6 +32,6 @@ install_applications() {
     fi
 }
 
-install_wm
-install_tools
-install_applications
+install_wm > /dev/null
+install_tools > /dev/null
+install_applications > /dev/null

@@ -18,5 +18,5 @@ setup_yay() {
 	cd -
 }
 
-install_base
-setup_yay
+install_base > /dev/null
+setup_yay > /dev/null

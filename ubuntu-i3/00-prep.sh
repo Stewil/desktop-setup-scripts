@@ -4,7 +4,7 @@ source $ROOTDIR/ubuntu-utils.sh
 
 remove_auto_update(){
     echo "REMOVING UNATTENDED UPGRADES"
-    sudo apt autoremove --purge -y unattended-upgrades
+    sudo apt-get autoremove --purge -y unattended-upgrades
 }
 
 
@@ -22,7 +22,7 @@ remove_snap(){
         done
     done
     echo "REMOVING SNAP"
-    sudo apt autoremove --purge -y snapd
+    sudo apt-get autoremove --purge -y snapd
     sudo rm -rf /var/cache/snapd/
     rm -rf ~/snap
     sudo systemctl daemon-reload
@@ -39,7 +39,7 @@ install_base_deps(){
     ADD build-essential cmake git wget curl 
 }
 
-remove_auto_update
-remove_snap
-add_firefox_ppa
-install_base_deps
+remove_auto_update > /dev/null
+remove_snap > /dev/null
+add_firefox_ppa > /dev/null
+install_base_deps > /dev/null
