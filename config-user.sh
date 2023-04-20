@@ -87,6 +87,7 @@ config_lightdm(){
         echo "CONFIGURING LIGHTDM"
         sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
     fi
+    sudo systemctl enable lightdm
 }
 
 config_touchpad(){
