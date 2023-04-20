@@ -105,8 +105,8 @@ config_lightdm(){
     if [ "$DIST" != "ubuntu" ]; then
         echo "CONFIGURING LIGHTDM"
         sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
+        sudo systemctl enable lightdm
     fi
-    sudo systemctl enable lightdm
 }
 
 config_touchpad(){
