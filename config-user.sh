@@ -46,10 +46,10 @@ config_neovim(){
         sudo ln -s /usr/bin/nvim /usr/bin/vi
         sudo ln -s /usr/bin/nvim /usr/bin/vim
     else
-        sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim
-        sudo update-alternatives --install /usr/bin/edit edit /usr/local/bin/nvim
-        sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim
-        sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim
+        sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 100
+        sudo update-alternatives --install /usr/bin/edit edit /usr/local/bin/nvim 100
+        sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 100
+        sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 100
         sudo update-alternatives --set editor /usr/local/bin/nvim
         sudo update-alternatives --set edit /usr/local/bin/nvim
         sudo update-alternatives --set vi /usr/local/bin/nvim
