@@ -6,12 +6,13 @@ CFGDIR=$ROOTDIR/config
 
 config_i3(){
     echo "CONFIGURING I3"
-	cp -r "$CFGDIR"/i3/ ~/.config/
+    mkdir -p ~/.config/i3
+    cp -r "$CFGDIR"/i3/* ~/.config/i3/
 }
 
 config_rofi(){
     echo "CONFIGURING ROFI"
-	cp -r "$CFGDIR"/rofi ~/.config/
+    cp -r "$CFGDIR"/rofi ~/.config/
 }
 
 config_picom(){
