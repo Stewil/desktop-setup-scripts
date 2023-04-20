@@ -39,10 +39,21 @@ config_neovim(){
         curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
     cp -r "$CFGDIR"/nvim ~/.config/
-    sudo ln -s /usr/bin/nvim /usr/bin/editor
-    sudo ln -s /usr/bin/nvim /usr/bin/edit
-    sudo ln -s /usr/bin/nvim /usr/bin/vi
-    sudo ln -s /usr/bin/nvim /usr/bin/vim
+    if [ "$DIST" != "ubuntu" ]; then
+        sudo ln -s /usr/bin/nvim /usr/bin/editor
+        sudo ln -s /usr/bin/nvim /usr/bin/edit
+        sudo ln -s /usr/bin/nvim /usr/bin/vi
+        sudo ln -s /usr/bin/nvim /usr/bin/vim
+    else
+        sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim
+        sudo update-alternatives --install /usr/bin/edit edit /usr/local/bin/nvim
+        sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim
+        sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim
+        sudo update-alternatives --set editor /usr/local/bin/nvim
+        sudo update-alternatives --set edit /usr/local/bin/nvim
+        sudo update-alternatives --set vi /usr/local/bin/nvim
+        sudo update-alternatives --set vim /usr/local/bin/nvim
+    fi
     nvim +PlugInstall +qall
 }
 
