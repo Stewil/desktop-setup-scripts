@@ -49,6 +49,7 @@ config_nerdfont(){
         wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
         sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || echo 'ERROR INSTALLING NF HACK'"
     fi
+    fc-cache -f -v
 }
 
 config_aliases(){
