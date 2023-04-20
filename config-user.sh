@@ -3,6 +3,7 @@
 # thanks to https://www.pixiv.net/en/users/3069527 for the lovely greeter illustration
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
+DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 
 config_i3(){
     echo "CONFIGURING I3"
@@ -101,7 +102,6 @@ config_themes(){
 }
 
 config_lightdm(){
-    DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
     if [ "$DIST" != "ubuntu" ]; then
         echo "CONFIGURING LIGHTDM"
         sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
