@@ -44,6 +44,7 @@ install_applications(){
     ADD firefox
     if [ ! -f /usr/bin/nvim ]; then
         wget -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+        sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/* /usr/local/ || echo 'INSTALLING NEOVIM FAILED'"
     fi
 }
 
