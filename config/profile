@@ -1,0 +1,4 @@
+#!/bin/sh
+export GTK_THEME=Nordic
+export TERMINAL=urxvt
+xset r rate 250 35

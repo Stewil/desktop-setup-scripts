@@ -78,13 +78,6 @@ config_aliases(){
     cp -r "$CFGDIR"/bashrc ~/.bashrc
 }
 
-config_xinit(){
-    echo "CONFIGURING XINIT"
-    cp "$CFGDIR"/xinitrc ~/.xinitrc
-    cp "$CFGDIR"/bash_login ~/.bash_login
-    rm ~/.bash_profile
-}
-
 config_themes(){
     echo "CONFIGURING THEMES"
     cp "$CFGDIR"/Xresources ~/.Xresources
@@ -107,12 +100,6 @@ config_lightdm(){
         sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
         sudo systemctl enable lightdm
     fi
-}
-
-config_touchpad(){
-    echo "CONFIGURING TOUCHPAD"
-    sudo cp "$CFGDIR"/71-synaptics.conf /usr/share/X11/xorg.conf.d/71-synaptics.conf
-
 }
 
 config_pcspkr(){
@@ -172,6 +159,11 @@ EOF
     fi
 }
 
+config_profile(){
+    echo 'CONFIGURING PROFILE'
+    cp -r "$CFGDIR"/profile ~/.profile
+}
+
 configure_user(){
     config_i3
     config_rofi
@@ -182,11 +174,11 @@ configure_user(){
     config_nerdfont
     config_neovim
     config_themes
-    config_touchpad
     config_pcspkr
     config_lightdm
     config_wallpaper
     config_greeter
+    config_profile
 }
 
 configure_user > /dev/null
