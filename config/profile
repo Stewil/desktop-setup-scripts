@@ -2,3 +2,4 @@
 export GTK_THEME=Nordic
 export TERMINAL=urxvt
 xset r rate 250 35
+setxkbmap -option ctrl:nocaps
