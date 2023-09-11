@@ -40,6 +40,7 @@ config_neovim(){
         curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
     cp -r "$CFGDIR"/nvim ~/.config/
+    cp "$CFGDIR"/clang-format ~/.clang-format
     if [ "$DIST" != "ubuntu" ]; then
         sudo ln -s /usr/bin/nvim /usr/bin/editor
         sudo ln -s /usr/bin/nvim /usr/bin/edit
