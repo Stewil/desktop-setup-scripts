@@ -12,6 +12,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-clang'
 call plug#end()
+lua require('config/treesitter')
 
 let g:airline_theme='deus'
 autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
@@ -28,17 +29,6 @@ let g:ale_linters = {
     \ 'cpp': ['clang'],
     \ 'c': ['clang']
 \}
-
-let g:neoformat_c_clangformat = {
-    \ 'exe': 'clang-format',
-    \ 'args': ['-style=file']
-\}
-let g:neoformat_cpp_clangformat = {
-    \ 'exe': 'clang-format',
-    \ 'args': ['-style=file']
-\}
-let g:neoformat_enabled_cpp = ['clangformat']
-let g:neoformat_enabled_c = ['clangformat']
 
 augroup fmt
   autocmd!
@@ -79,6 +69,6 @@ vnoremap <C-h> <Left>
 vnoremap <C-j> <Down>
 vnoremap <C-k> <Up>
 vnoremap <C-l> <Right>
-lua require('config/treesitter')
+" ensure backspace does what's expected
 inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
