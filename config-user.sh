@@ -167,21 +167,32 @@ config_profile(){
     cp -r "$CFGDIR"/profile ~/.profile
 }
 
+config_ssh-agent(){
+    echo 'CONFIGURING SSH_AGENT'
+    systemctl --user enable ssh-agent
+}
+
 configure_user(){
-    config_i3
-    config_rofi
-    config_picom
-    config_powerline
-    config_tab_completion
-    config_aliases
-    config_nerdfont
-    config_neovim
-    config_themes
-    config_pcspkr
-    config_lightdm
-    config_wallpaper
-    config_greeter
-    config_profile
+    if [[ $EUID -gt 0 ]]; then #not root
+        config_i3
+        config_rofi
+        config_picom
+        config_powerline
+        config_tab_completion
+        config_aliases
+        config_nerdfont
+        config_neovim
+        config_themes
+        config_pcspkr
+        config_lightdm
+        config_wallpaper
+        config_greeter
+        config_profile
+        config_ssh-agent
+    else
+        echo "It does not really make sense to configure the user, running as root."
+        echo "Does it?"
+    fi
 }
 
 configure_user > /dev/null
