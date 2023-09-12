@@ -80,3 +80,5 @@ vnoremap <C-j> <Down>
 vnoremap <C-k> <Up>
 vnoremap <C-l> <Right>
 lua require('config/treesitter')
+inoremap <Char-0x07F> <BS>
+nnoremap <Char-0x07F> <BS>
