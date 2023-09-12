@@ -56,9 +56,7 @@ config_neovim(){
         sudo update-alternatives --set vi /usr/local/bin/nvim
         sudo update-alternatives --set vim /usr/local/bin/nvim
     fi
-    nvim +PlugInstall +qall
-    nvim +PlugUpdate +qall
-    nvim +TSInstall cpp python +qall
+    nvim +PlugInstall +PlugUpdate +UpdateRemotePlugins +TSInstall cpp python +qall
 }
 
 config_nerdfont(){
