@@ -9,7 +9,7 @@ install_drivers(){
 
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
-    ADD xorg i3-wm picom i3blocks i3lock i3status dunst rofi nitrogen arandr xinit scrot lightdm lightdm-gtk-greeter gnome-themes-extra
+    ADD xorg i3-wm picom polybar i3lock i3status dunst rofi nitrogen arandr xinit scrot lightdm lightdm-gtk-greeter gnome-themes-extra
     ADD python-is-python3 python3-pip
     ADD libxcb-render0-dev libffi-dev python3-dev python3-cffi
     ADD dbus-x11 at-spi2-core xserver-xorg-input-libinput

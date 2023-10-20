@@ -4,7 +4,7 @@ source $ROOTDIR/arch-utils.sh
 
 install_wm(){
     echo "INSTALLING WINDOW MANAGER"
-    ADD picom i3-wm i3status i3blocks i3lock xorg-xinit lightdm lightdm-gtk-greeter gnome-themes-extra
+    ADD picom i3-wm i3status polybar i3lock xorg-xinit lightdm lightdm-gtk-greeter gnome-themes-extra
     ADD dbus at-spi2-core xf86-input-libinput
     YADD flashfocus-git
 }

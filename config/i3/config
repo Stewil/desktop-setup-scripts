@@ -8,8 +8,12 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id thunar --daemon
 exec --no-startup-id blueman-applet
+exec_always --no-startup-id killall -q polybar && while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done; polybar -c ~/.config/i3/polybar.ini
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id flashfocus
+# setup xss auto lock daemon
+exec_always --no-startup-id xset s 300
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/blur-lock.sh
 set $darkbluetrans	#08052be6
 set $darkblue		#08052b
 set $lightblue		#5294e2
@@ -145,24 +149,6 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
-
-bar {
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    position bottom
-	tray_output primary
-	tray_padding 0
-	strip_workspace_numbers yes
-	colors {
-    	separator          $purple
-	    background         $darkgrey
-		statusline         $white
-		                    #border 		    bg		    txt		    indicator
-		focused_workspace	$mediumgrey	   	    $grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-		urgent_workspace	$urgentred	    	$urgentred	$white		$purple 
-	}
-}
 
 # General settings that otherwise annoy me
 # gaps inner 10 # only available in i3-gaps
