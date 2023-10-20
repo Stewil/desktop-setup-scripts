@@ -1,0 +1,95 @@
+:root[uidensity="compact"]{
+	--tab-block-margin: 2px !important;
+}
+
+#navigator-toolbox{
+	--uc-navigationbar-width: 600px;
+	--uc-toolbar-height: 40px;
+}
+
+#scrollbutton-up,
+#scrollbutton-down{ border-block-width: 2px !important; }
+
+:root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 34px; }
+:root[uidensity="touch"] #navigator-toolbox{ --uc-toolbar-height: 44px; }
+
+@media screen and (max-width: 1500px){
+	#urlbar-container{ min-width:unset !important }
+}
+
+#TabsToolbar{
+	margin-left: var(--uc-navigationbar-width);
+	--tabs-navbar-shadow-size: 0px;
+}
+#tabbrowser-tabs{
+	--tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin,0px)) !important;
+}
+
+.titlebar-spacer[type="pre-tabs"]{ display: none }
+
+#navigator-toolbox > #nav-bar{
+	margin-right:calc(100vw - var(--uc-navigationbar-width));
+	margin-top: calc(0px - var(--uc-toolbar-height));
+}
+
+:root[tabsintitlebar="true"] #nav-bar{ padding-left: 24px !important }
+
+@supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled"){
+	.titlebar-buttonbox-container{ position: fixed; display: block; left: 0px; z-index: 3; }
+	:root[tabsintitlebar="true"] #nav-bar{ padding-left: 96px !important; padding-right: 0px !important; }
+}
+
+.tab-close-button{ margin-top: 0 !important }
+
+#urlbar[open]:focus-within{ min-width: var(--uc-urlbar-min-width,none) !important; }
+
+#urlbar-container:not(:hover) .urlbar-history-dropmarker{ margin-inline-start: -28px; }
+
+#customization-panelWrapper > .panel-arrowbox > .panel-arrow{ margin-inline-end: initial !important; }
+
+:root #TabsToolbar,
+:root #titlebar,
+:root #tabbrowser-tabs {
+	-moz-appearance: -moz-mac-vibrant-titlebar-light !important;
+	-moz-appearance: -moz-mac-source-list !important;
+	background-color: transparent !important;
+}
+
+:root:-moz-window-inactive .tab-content {
+	opacity: 0.6;
+}
+
+:root {
+	--toolbarbutton-hover-background: color-mix(in srgb, currentColor 11%, transparent) !important;
+	--toolbarbutton-active-background: color-mix(in srgb, currentColor 21%, transparent) !important;
+}
+
+
+@-moz-document url(chrome://browser/content/browser.xhtml){
+
+    :root:not([inFullscreen]){
+      --uc-bottom-toolbar-height: calc(39px + var(--toolbarbutton-outer-padding) )
+    }
+  
+    :root[uidensity="compact"]:not([inFullscreen]){
+      --uc-bottom-toolbar-height: calc(32px + var(--toolbarbutton-outer-padding) )
+    }
+  
+    #browser,
+    #customization-container{ margin-bottom: var(--uc-bottom-toolbar-height,0px) }
+  
+    #navigator-toolbox-background{
+      position: fixed !important;
+      bottom: 0px;
+      /* For some reason -webkit-box behaves internally like -moz-box, but can be used with fixed position. display: flex would work too but it breaks extension menus. */
+      display: -webkit-box;
+      width: 100%;
+      z-index: 1;
+    }
+    #nav-bar-customization-target{ -webkit-box-flex: 1; }
+  
+    /* Fix panels sizing */
+    .panel-viewstack{ max-height: unset !important; }
+
+    .urlbarView-body-inner{ border-top-style: none !important; }
+}
