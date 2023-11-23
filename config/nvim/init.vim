@@ -72,3 +72,7 @@ vnoremap <C-l> <Right>
 " ensure backspace does what's expected
 inoremap <Char-0x07F> <BS>
 nnoremap <Char-0x07F> <BS>
+
+" use treesitter for code folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
