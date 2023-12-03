@@ -20,6 +20,7 @@ colorscheme deus
 set number
 
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
 
 let g:rustfmt_autosave=1
 
