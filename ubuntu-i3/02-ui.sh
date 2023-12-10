@@ -3,8 +3,10 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
 install_drivers(){
-    ELOG 'INSTALLING DRIVERS'
-    sudo ubuntu-drivers autoinstall
+    if [ ! -f /.dockerenv ]; then
+        ELOG 'INSTALLING DRIVERS'
+        sudo ubuntu-drivers autoinstall
+    fi
 }
 
 install_wm(){
