@@ -42,7 +42,11 @@ install_tools(){
 install_applications(){
     ELOG "INSTALLING APPLICATIONS"
     ADD firefox
-    if [ ! -f /usr/bin/nvim ]; then
+    if [[ $(dpkg -s neovim 2> /dev/null ) ]] ; then
+        # Ubuntu version is old.
+        REMOVE neovim
+    fi
+    if [ ! -f "$(which nvim)" ]; then
         wget -q -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
         sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/* /usr/local/ || ELOG 'INSTALLING NEOVIM FAILED'"
     fi
