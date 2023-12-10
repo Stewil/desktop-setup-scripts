@@ -6,5 +6,12 @@ setup_locale(){
     echo "SETTING UP LOCALES"
     ADD language-pack-en
     locale-gen
-    localectl set-x11-keymap us
 }
+
+setup_input(){
+    echo "SETTING UP INPUT"
+    ADD fcitx5 fcitx5-config-qt fcitx5-frontend-gtk2 fcitx5-frontend-gtk3 fcitx5-frontend-qt5 fcitx5-mozc
+}
+
+setup_locale
+setup_input

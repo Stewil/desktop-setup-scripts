@@ -14,6 +14,7 @@ setup_ubuntu_server(){
     ./02-ui.sh
     ./03-audio.sh
     ./04-software.sh
+    ./05-locale.sh
     ./06-bluetooth.sh
     cd -
 }
