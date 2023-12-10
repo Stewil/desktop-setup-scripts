@@ -26,7 +26,7 @@ setup_arch(){
     ./02-ui.sh
     ./03-audio.sh
     ./04-software.sh
-    ./05-japanese.sh
+    ./05-language.sh
     ./06-bluetooth.sh
     cd -
 }
