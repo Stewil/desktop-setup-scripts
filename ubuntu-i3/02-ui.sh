@@ -13,7 +13,7 @@ install_wm(){
     ADD python-is-python3 python3-pip
     ADD libxcb-render0-dev libffi-dev python3-dev python3-cffi
     ADD dbus-x11 at-spi2-core xserver-xorg-input-libinput
-    sudo python3 -m pip install flashfocus
+    python3 -m pip install --yes flashfocus
     sudo dpkg-reconfigure lightdm
 }
 

@@ -5,7 +5,7 @@ source $ROOTDIR/ubuntu-utils.sh
 setup_locale(){
     ELOG "SETTING UP LOCALES"
     ADD language-pack-en
-    locale-gen
+    sudo locale-gen
 }
 
 setup_input(){
