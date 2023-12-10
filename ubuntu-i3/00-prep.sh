@@ -5,7 +5,7 @@ source $ROOTDIR/ubuntu-utils.sh
 install_base_deps(){
     ELOG "INSTALLING BASE DEPENDENCIES"
     ADD apt-utils
-    ADD software-properties-common gnupg gpg-agent
+    ADD software-properties-common gnupg gpg-agent ubuntu-drivers-common
     ADD build-essential cmake git wget curl
 }
 
