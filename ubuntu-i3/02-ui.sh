@@ -50,7 +50,7 @@ install_applications(){
     fi
     if [ ! -f "$(which nvim)" ]; then
         wget -q -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-        sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/* /usr/local/ || echo 'INSTALLING NEOVIM FAILED' >&2"
+        sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/bin/* /usr/local/bin/ && cp -r nvim-linux64/lib/* /usr/local/lib/ && cp -r nvim-linux64/man/man1/* /usr/local/man/man1/ && cp -r nvim-linux64/share/* /usr/local/share/ || echo 'INSTALLING NEOVIM FAILED' >&2"
     fi
 }
 
