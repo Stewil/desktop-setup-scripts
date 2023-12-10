@@ -42,20 +42,21 @@ config_neovim(){
     fi
     cp -r "$CFGDIR"/nvim ~/.config/
     cp "$CFGDIR"/clang-format ~/.clang-format
+    NVIM_BIN="$(which nvim)"
     if [ "$DIST" != "ubuntu" ]; then
-        sudo ln -s /usr/bin/nvim /usr/bin/editor
-        sudo ln -s /usr/bin/nvim /usr/bin/edit
-        sudo ln -s /usr/bin/nvim /usr/bin/vi
-        sudo ln -s /usr/bin/nvim /usr/bin/vim
+        sudo ln -s "$NVIM_BIN" /usr/bin/editor
+        sudo ln -s "$NVIM_BIN" /usr/bin/edit
+        sudo ln -s "$NVIM_BIN" /usr/bin/vi
+        sudo ln -s "$NVIM_BIN" /usr/bin/vim
     else
-        sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 100
-        sudo update-alternatives --install /usr/bin/edit edit /usr/local/bin/nvim 100
-        sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 100
-        sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 100
-        sudo update-alternatives --set editor /usr/local/bin/nvim
-        sudo update-alternatives --set edit /usr/local/bin/nvim
-        sudo update-alternatives --set vi /usr/local/bin/nvim
-        sudo update-alternatives --set vim /usr/local/bin/nvim
+        sudo update-alternatives --install /usr/bin/editor  editor  "$NVIM_BIN" 100
+        sudo update-alternatives --install /usr/bin/edit    edit    "$NVIM_BIN" 100
+        sudo update-alternatives --install /usr/bin/vi      vi      "$NVIM_BIN" 100
+        sudo update-alternatives --install /usr/bin/vim     vim     "$NVIM_BIN" 100
+        sudo update-alternatives --set editor   "$NVIM_BIN"
+        sudo update-alternatives --set edit     "$NVIM_BIN"
+        sudo update-alternatives --set vi       "$NVIM_BIN"
+        sudo update-alternatives --set vim      "$NVIM_BIN"
     fi
     nvim +PlugInstall +qall
     nvim +PlugUpdate +UpdateRemotePlugins "+TSInstall cpp python" +qall
@@ -69,10 +70,10 @@ config_nerdfont(){
     fi
     if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
         ELOG "INSTALLING NERDFONT: HACK"
-        wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
+        wget -q --show-progress -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
         sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || ELOG 'ERROR INSTALLING NF HACK'"
     fi
-    fc-cache -f -v
+    sudo fc-cache -f -v
 }
 
 config_aliases(){
@@ -92,7 +93,7 @@ config_themes(){
         git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
     fi
     if [ ! -d ~/.local/share/icons/Zafiro-Icons-Dark/ ]; then
-        wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
+        wget -q --show-progress -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
     fi
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
@@ -131,7 +132,7 @@ config_wallpaper(){
     ELOG "CONFIGURING WALLPAPER"
     if [ ! -f ~/Pictures/wp/bg.jpg ]; then
     mkdir -p ~/Pictures/wp
-    wget -O ~/Pictures/wp/bg.jpg \
+    wget -q --show-progress -O ~/Pictures/wp/bg.jpg \
         --referer='https://www.pixiv.net/en/artworks/85281138' \
         https://i.pximg.net/img-original/img/2020/10/27/23/47/17/85281138_p0.jpg
     mkdir -p ~/.config/nitrogen
@@ -148,7 +149,7 @@ config_greeter(){
     ELOG "CONFIGURING GREETER"
     if [ ! -f /usr/share/pixmaps/greeter.jpg ]; then
     sudo mkdir -p /usr/share/pixmaps
-    sudo wget -O /usr/share/pixmaps/greeter.jpg \
+    sudo wget -q --show-progress -O /usr/share/pixmaps/greeter.jpg \
         --referer='https://www.pixiv.net/en/artworks/91390457' \
         https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg
     if [ ! $(grep -q greeter.jpg /etc/lightdm/lightdm-gtk-greeter.conf) ]; then
