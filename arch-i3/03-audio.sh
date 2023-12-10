@@ -2,7 +2,7 @@
 source $ROOTDIR/arch-utils.sh
 
 install_audio(){
-    echo "INSTALLING AUDIO"
+    ELOG "INSTALLING AUDIO"
     ADD alsa-utils alsa-plugins pulseaudio pulseaudio-alsa pavucontrol
 }
 

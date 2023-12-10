@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
+source "$ROOTDIR/../script-utils.sh"
 
 ADD(){
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "$@" > /dev/null

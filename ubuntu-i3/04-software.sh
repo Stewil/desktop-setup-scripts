@@ -3,7 +3,7 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
 install_software(){
-    echo "INSTALLING COMMONLY USED SOFTWARE"
+    ELOG "INSTALLING COMMONLY USED SOFTWARE"
     ADD neofetch zip unzip unrar tar 7zip gzip clang bash-completion rxvt-unicode file python3-neovim openssh-client
 }
 

@@ -2,26 +2,32 @@
 ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
+install_base_deps(){
+    ELOG "INSTALLING BASE DEPENDENCIES"
+    ADD software-properties-common
+    ADD apt-utils
+    ADD build-essential cmake git wget curl
+}
+
 remove_auto_update(){
-    echo "REMOVING UNATTENDED UPGRADES"
+    ELOG "REMOVING UNATTENDED UPGRADES"
     sudo apt-get autoremove --purge -y unattended-upgrades
 }
 
-
 remove_snap(){
     if dpkg -s snapd ; then
-    echo "DISABLING SNAP SERVICE"
+    ELOG "DISABLING SNAP SERVICE"
     sudo systemctl disable snapd.service
     sudo systemctl disable snapd.socker
     sudo systemctl disable snapd.seeded.service
-    echo "REMOVING ALL SNAP PACKAGES"
+    ELOG "REMOVING ALL SNAP PACKAGES"
     while [[ $(sudo snap list | tail -n +2) ]]; do
         snaps=$(sudo snap list |tail -n +2 | awk '{print $1}')
         for i in $snaps; do
-            sudo snap remove "$i" || echo "Error removing $i"
+            sudo snap remove "$i" || ELOG "Error removing $i"
         done
     done
-    echo "REMOVING SNAP"
+    ELOG "REMOVING SNAP"
     sudo apt-get autoremove --purge -y snapd
     sudo rm -rf /var/cache/snapd/
     rm -rf ~/snap
@@ -30,16 +36,11 @@ remove_snap(){
 }
 
 add_firefox_ppa(){
-    echo "ADDING PPA"
+    ELOG "ADDING PPA"
     sudo add-apt-repository -y ppa:mozillateam/ppa
 }
 
-install_base_deps(){
-    echo "INSTALLING BASE DEPENDENCIES"
-    ADD build-essential cmake git wget curl 
-}
-
-remove_auto_update > /dev/null
-remove_snap > /dev/null
-add_firefox_ppa > /dev/null
-install_base_deps > /dev/null
+install_base_deps
+remove_auto_update
+remove_snap
+add_firefox_ppa

@@ -3,13 +3,13 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
 install_bluetooth(){
-    echo "INSTALLING BLUETOOTH TOOLS"
+    ELOG "INSTALLING BLUETOOTH TOOLS"
     ADD bluez bluez-tools blueman
-    echo "LOADING BLUETOOTH MODULE"
+    ELOG "LOADING BLUETOOTH MODULE"
     sudo modprobe btusb
-    echo "ENABLING BLUETOOTH SERVICE"
+    ELOG "ENABLING BLUETOOTH SERVICE"
     sudo systemctl enable bluetooth
     sudo systemctl start bluetooth
 }
 
-install_bluetooth > /dev/null
+install_bluetooth

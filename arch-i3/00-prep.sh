@@ -3,13 +3,13 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/arch-utils.sh
 
 install_base(){
-    echo "INSTALL BASE"
+    ELOG "INSTALL BASE"
     ## needed for yay setup
     ADD base-devel go
 }
 
 setup_yay() {
-    echo "SETUP YAY"
+    ELOG "SETUP YAY"
 	cd /opt
 	sudo git clone https://aur.archlinux.org/yay.git
 	sudo chown -R $USER:$USER ./yay
@@ -18,5 +18,5 @@ setup_yay() {
 	cd -
 }
 
-install_base > /dev/null
-setup_yay > /dev/null
+install_base
+setup_yay

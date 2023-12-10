@@ -2,11 +2,12 @@
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
 USERNAME="$(whoami)"
+source "$ROOTDIR/script-utils.sh"
 
 setup_ubuntu_server(){
     export DEBIAN_FRONTEND=noninteractive
     dir=$ROOTDIR/ubuntu-i3
-    echo "ADDING FIREFOX APT PREFERENCES"
+    ELOG "ADDING FIREFOX APT PREFERENCES"
     sudo cp "${CFGDIR}/firefox-no-snap" /etc/apt/preferences.d/
     cd $dir
     ./00-prep.sh
@@ -37,9 +38,9 @@ setup(){
     case $DIST in
         "ubuntu") setup_ubuntu_server ;;
         "arch") setup_arch ;;
-        *) echo "No setup found for ${DIST}";;
+        *) ELOG "No setup found for ${DIST}";;
     esac
 }
 
-setup
+setup > /dev/null
 $ROOTDIR/config-user.sh

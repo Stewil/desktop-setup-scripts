@@ -3,11 +3,11 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
 install_audio(){
-    echo "INSTALLING ALSA"
+    ELOG "INSTALLING ALSA"
     ADD libasound2 libasound2-plugins alsa-utils alsa-oss
-    echo "INSTALLING PULSE"
+    ELOG "INSTALLING PULSE"
     ADD pulseaudio pulseaudio-utils
-    echo "INSTALLING PAVUCONTROL"
+    ELOG "INSTALLING PAVUCONTROL"
     ADD pavucontrol
 }
 

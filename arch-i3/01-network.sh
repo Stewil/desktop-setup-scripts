@@ -3,7 +3,7 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/arch-utils.sh
 
 install_netman(){
-    echo "INSTALL NETWORK MANAGER"
+    ELOG "INSTALL NETWORK MANAGER"
     ADD networkmanager
 }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-CFGDIR="${ROOTDIR}/config/"
+source "$ROOTDIR/../script-utils.sh"
 
 ADD(){
     sudo pacman -Sy --noconfirm --needed "$@" > /dev/null

@@ -3,7 +3,7 @@ ROOTDIR=$(dirname $(realpath "$0"))
 source $ROOTDIR/ubuntu-utils.sh
 
 install_networking(){
-    echo "INSTALLING NETWORK-MANAGER"
+    ELOG "INSTALLING NETWORK-MANAGER"
     ADD network-manager avahi-daemon
 }
 
