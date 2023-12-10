@@ -4,8 +4,8 @@ source $ROOTDIR/ubuntu-utils.sh
 
 install_base_deps(){
     ELOG "INSTALLING BASE DEPENDENCIES"
-    ADD software-properties-common
     ADD apt-utils
+    ADD software-properties-common
     ADD build-essential cmake git wget curl
 }
 
