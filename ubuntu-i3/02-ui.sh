@@ -15,8 +15,8 @@ install_wm(){
     ADD python-is-python3 python3-pip
     ADD libxcb-render0-dev libffi-dev python3-dev python3-cffi
     ADD dbus-x11 at-spi2-core xserver-xorg-input-libinput
-    python3 -m pip install --yes flashfocus
-    sudo dpkg-reconfigure lightdm
+    python3 -m pip install --no-input flashfocus
+    sudo dpkg-reconfigure -f noninteractive lightdm
 }
 
 install_tools(){
@@ -50,7 +50,7 @@ install_applications(){
     fi
     if [ ! -f "$(which nvim)" ]; then
         wget -q -P /tmp https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-        sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/* /usr/local/ || ELOG 'INSTALLING NEOVIM FAILED'"
+        sudo bash -c "cd /tmp && tar -xf nvim-linux64.tar.gz && cp -r nvim-linux64/* /usr/local/ || echo 'INSTALLING NEOVIM FAILED' >&2"
     fi
 }
 
