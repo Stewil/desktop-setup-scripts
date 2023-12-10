@@ -171,6 +171,11 @@ config_ssh-agent(){
     systemctl --user enable ssh-agent
 }
 
+config_fcitx(){
+    echo 'CONFIGURING FCITX5'
+    cp -r "$CFGDIR"/fcitx5 ~/.config/
+}
+
 configure_user(){
     if [[ $EUID -gt 0 ]]; then #not root
         config_i3
@@ -188,6 +193,7 @@ configure_user(){
         config_greeter
         config_profile
         config_ssh-agent
+        config_fcitx
     else
         echo "It does not really make sense to configure the user, running as root."
         echo "Does it?"
