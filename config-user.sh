@@ -4,30 +4,31 @@
 ROOTDIR=$(dirname $(realpath "$0"))
 CFGDIR=$ROOTDIR/config
 DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
+source "$ROOTDIR/script-utils.sh"
 
 config_i3(){
-    echo "CONFIGURING I3"
+    ELOG "CONFIGURING I3"
     mkdir -p ~/.config/i3
     cp -r "$CFGDIR"/i3/* ~/.config/i3/
 }
 
 config_rofi(){
-    echo "CONFIGURING ROFI"
+    ELOG "CONFIGURING ROFI"
     cp -r "$CFGDIR"/rofi ~/.config/
 }
 
 config_picom(){
-    echo "CONFIGURING PICOM"
+    ELOG "CONFIGURING PICOM"
     cp -r "$CFGDIR"/picom ~/.config/
 }
 
 config_powerline(){
-    echo "CONFIGURING POWERLINE"
+    ELOG "CONFIGURING POWERLINE"
     cp -r "$CFGDIR"/powerline ~/.config/
 }
 
 config_tab_completion(){
-    echo "CONFIGURING TAB COMPLETION"
+    ELOG "CONFIGURING TAB COMPLETION"
     if [ ! -a ~/.inputrc ]; then
         echo '$include /etc/inputrc' > ~/.inputrc
         echo 'set completion-ignore-case On' >> ~/.inputrc
@@ -35,7 +36,7 @@ config_tab_completion(){
 }
 
 config_neovim(){
-    echo "CONFIGURING NEOVIM"
+    ELOG "CONFIGURING NEOVIM"
     if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
         curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
@@ -61,27 +62,27 @@ config_neovim(){
 }
 
 config_nerdfont(){
-    echo "CONFIGURING NERDFONTS"
+    ELOG "CONFIGURING NERDFONTS"
     NFDIR="/usr/share/fonts/truetype/nerdfonts"
     if [ ! -d "$NFDIR" ]; then
         sudo mkdir -p "$NFDIR"
     fi
     if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
-        echo "INSTALLING NERDFONT: HACK"
+        ELOG "INSTALLING NERDFONT: HACK"
         wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
-        sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || echo 'ERROR INSTALLING NF HACK'"
+        sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || ELOG 'ERROR INSTALLING NF HACK'"
     fi
     fc-cache -f -v
 }
 
 config_aliases(){
-    echo "CONFIGURING ALIASES"
+    ELOG "CONFIGURING ALIASES"
     cp -r "$CFGDIR"/aliases ~/.aliases
     cp -r "$CFGDIR"/bashrc ~/.bashrc
 }
 
 config_themes(){
-    echo "CONFIGURING THEMES"
+    ELOG "CONFIGURING THEMES"
     cp "$CFGDIR"/Xresources ~/.Xresources
     mkdir -p ~/.themes
     if [ ! -d ~/.themes/Nordic ]; then
@@ -98,20 +99,20 @@ config_themes(){
 
 config_lightdm(){
     if [ "$DIST" != "ubuntu" ]; then
-        echo "CONFIGURING LIGHTDM"
+        ELOG "CONFIGURING LIGHTDM"
         sudo cp "$CFGDIR"/lightdm.conf /etc/lightdm/lightdm.conf
         sudo systemctl enable lightdm
     fi
 }
 
 config_pcspkr(){
-    echo "CONFIGURING PCSPKR"
+    ELOG "CONFIGURING PCSPKR"
     sudo cp "$CFGDIR"/nobeep.conf /etc/modprobe.d/nobeep.conf
 
 }
 
 config_defaults(){
-    echo "CONFIGURING DEFAULT APPLICATIONS"
+    ELOG "CONFIGURING DEFAULT APPLICATIONS"
     xdg-mime default thunar.desktop inode/directory
     xdg-mime default nsxiv.desktop image/bmp image/gif image/jpeg image/jpg \
         image/png image/tiff image/x-bmp image/x-portable-anymap \
@@ -127,7 +128,7 @@ config_defaults(){
 }
 
 config_wallpaper(){
-    echo "CONFIGURING WALLPAPER"
+    ELOG "CONFIGURING WALLPAPER"
     if [ ! -f ~/Pictures/wp/bg.jpg ]; then
     mkdir -p ~/Pictures/wp
     wget -O ~/Pictures/wp/bg.jpg \
@@ -144,7 +145,7 @@ EOF
 }
 
 config_greeter(){
-    echo "CONFIGURING GREETER"
+    ELOG "CONFIGURING GREETER"
     if [ ! -f /usr/share/pixmaps/greeter.jpg ]; then
     sudo mkdir -p /usr/share/pixmaps
     sudo wget -O /usr/share/pixmaps/greeter.jpg \
@@ -162,17 +163,17 @@ EOF
 }
 
 config_profile(){
-    echo 'CONFIGURING PROFILE'
+    ELOG 'CONFIGURING PROFILE'
     cp -r "$CFGDIR"/profile ~/.profile
 }
 
 config_ssh-agent(){
-    echo 'CONFIGURING SSH_AGENT'
+    ELOG 'CONFIGURING SSH_AGENT'
     systemctl --user enable ssh-agent
 }
 
 config_fcitx(){
-    echo 'CONFIGURING FCITX5'
+    ELOG 'CONFIGURING FCITX5'
     cp -r "$CFGDIR"/fcitx5 ~/.config/
 }
 
@@ -195,8 +196,8 @@ configure_user(){
         config_ssh-agent
         config_fcitx
     else
-        echo "It does not really make sense to configure the user, running as root."
-        echo "Does it?"
+        ELOG "It does not really make sense to configure the user, running as root."
+        ELOG "Does it?"
     fi
 }
 
