@@ -70,7 +70,7 @@ config_nerdfont(){
     fi
     if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
         ELOG "INSTALLING NERDFONT: HACK"
-        wget -q --show-progress -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip
+        wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip -q --show-progress
         sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || ELOG 'ERROR INSTALLING NF HACK'"
     fi
     sudo fc-cache -f -v
@@ -93,7 +93,7 @@ config_themes(){
         git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
     fi
     if [ ! -d ~/.local/share/icons/Zafiro-Icons-Dark/ ]; then
-        wget -q --show-progress -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
+        wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh -q --show-progress  && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
     fi
     cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
@@ -132,9 +132,9 @@ config_wallpaper(){
     ELOG "CONFIGURING WALLPAPER"
     if [ ! -f ~/Pictures/wp/bg.jpg ]; then
     mkdir -p ~/Pictures/wp
-    wget -q --show-progress -O ~/Pictures/wp/bg.jpg \
+    wget -O ~/Pictures/wp/bg.jpg \
         --referer='https://www.pixiv.net/en/artworks/85281138' \
-        https://i.pximg.net/img-original/img/2020/10/27/23/47/17/85281138_p0.jpg
+        https://i.pximg.net/img-original/img/2020/10/27/23/47/17/85281138_p0.jpg -q --show-progress
     mkdir -p ~/.config/nitrogen
     sudo tee ~/.config/nitrogen/bg-saved.cfg <<EOF
 [xin_-1]
@@ -149,9 +149,9 @@ config_greeter(){
     ELOG "CONFIGURING GREETER"
     if [ ! -f /usr/share/pixmaps/greeter.jpg ]; then
     sudo mkdir -p /usr/share/pixmaps
-    sudo wget -q --show-progress -O /usr/share/pixmaps/greeter.jpg \
+    sudo wget -O /usr/share/pixmaps/greeter.jpg \
         --referer='https://www.pixiv.net/en/artworks/91390457' \
-        https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg
+        https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg -q --show-progress
     if [ ! $(grep -q greeter.jpg /etc/lightdm/lightdm-gtk-greeter.conf) ]; then
     sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
 position = 15%,center 70%,center
