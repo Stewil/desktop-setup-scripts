@@ -5,7 +5,7 @@ source $ROOTDIR/ubuntu-utils.sh
 install_base_deps(){
     ELOG "INSTALLING BASE DEPENDENCIES"
     ADD apt-utils
-    ADD software-properties-common
+    ADD software-properties-common gnupg gpg-agent
     ADD build-essential cmake git wget curl
 }
 
@@ -15,7 +15,7 @@ remove_auto_update(){
 }
 
 remove_snap(){
-    if dpkg -s snapd ; then
+    if [[ ! $(dpkg -s snapd 2> /dev/null ) ]] ; then
     ELOG "DISABLING SNAP SERVICE"
     sudo systemctl disable snapd.service
     sudo systemctl disable snapd.socker
