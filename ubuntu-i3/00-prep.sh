@@ -15,7 +15,7 @@ remove_auto_update(){
 }
 
 remove_snap(){
-    if [[ ! $(dpkg -s snapd 2> /dev/null ) ]] ; then
+    if [[ $(dpkg -s snapd 2> /dev/null ) ]] ; then
     ELOG "DISABLING SNAP SERVICE"
     sudo systemctl disable snapd.service
     sudo systemctl disable snapd.socker
