@@ -58,7 +58,7 @@ config_neovim(){
         sudo update-alternatives --set vi       "$NVIM_BIN"
         sudo update-alternatives --set vim      "$NVIM_BIN"
     fi
-    nvim +PlugInstall +qall
+    nvim --clean +PlugInstall +qall
     nvim +PlugUpdate +UpdateRemotePlugins "+TSInstall cpp python" +qall
 }
 
