@@ -31,10 +31,6 @@ let g:ale_linters = {
     \ 'c': ['clang']
 \}
 
-augroup fmt
-  autocmd!
-  au BufWritePre * try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry
-augroup END
 set mouse=
 map <LeftMouse> <Nop>
 set tabstop=4
