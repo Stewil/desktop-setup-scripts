@@ -14,6 +14,7 @@ exec_always --no-startup-id flashfocus
 # setup xss auto lock daemon
 exec_always --no-startup-id xset s 300
 exec_always --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/blur-lock.sh
+exec_always fcitx5
 set $darkbluetrans	#08052be6
 set $darkblue		#08052b
 set $lightblue		#5294e2
