@@ -165,7 +165,8 @@ EOF
 
 config_profile(){
     ELOG 'CONFIGURING PROFILE'
-    cp -r "$CFGDIR"/profile ~/.profile
+    cp "$CFGDIR"/profile ~/.profile
+    cp "$CFGDIR"/xprofile ~/.xprofile
 }
 
 config_ssh-agent(){

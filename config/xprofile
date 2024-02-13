@@ -1,0 +1,8 @@
+export GTK_THEME=Nordic
+export XMODIFIERS=@im=fcitx
+export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+xset r rate 250 35
+xrdb -merge "$HOME/.Xresources"
+setxkbmap -option ctrl:nocaps
+
