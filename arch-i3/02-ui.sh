@@ -25,7 +25,7 @@ install_tools(){
 
 install_applications() {
     ELOG "INSTALLING APPLICATIONS"
-    ADD thunar flameshot thunar-volman gvfs gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs imlib2
+    ADD thunar flameshot thunar-volman gvfs gvfs-google gvfs-gphoto2 gvfs-mtp gvfs-nfs imlib2 network-manager-applet
     if [ ! -f /usr/local/bin/nsxiv ]; then
         sudo bash -c "git clone https://codeberg.org/nsxiv/nsxiv /tmp/nsxiv && \
             cd /tmp/nsxiv && make && make install"

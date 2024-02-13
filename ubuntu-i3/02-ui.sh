@@ -21,7 +21,7 @@ install_wm(){
 
 install_tools(){
     ELOG "INSTALLING VARIOUS TOOLS"
-    ADD policykit-1-gnome thunar flameshot x11-xkb-utils mpv powerline libimlib2-dev libxft-dev libexif-dev
+    ADD policykit-1-gnome thunar flameshot x11-xkb-utils mpv powerline libimlib2-dev libxft-dev libexif-dev network-manager-applet
     ELOG "INSTALLING FONTS"
     ADD fonts-noto*
     if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then
