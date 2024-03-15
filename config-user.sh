@@ -179,6 +179,11 @@ config_fcitx(){
     cp -r "$CFGDIR"/fcitx5 ~/.config/
 }
 
+config_xfce4(){
+    ELOG 'CONFIGURING XFCE4'
+    cp -r "$CFGDIR"/xfce4 ~/.config/
+}
+
 configure_user(){
     if [[ $EUID -gt 0 ]]; then #not root
         config_i3
@@ -197,6 +202,7 @@ configure_user(){
         config_profile
         config_ssh-agent
         config_fcitx
+        config_xfce4
     else
         ELOG "It does not really make sense to configure the user, running as root."
         ELOG "Does it?"
