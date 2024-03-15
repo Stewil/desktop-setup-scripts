@@ -12,6 +12,10 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-clang'
 call plug#end()
+autocmd VimEnter *
+    \ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \|  PlugInstall --sync | q
+    \| endif
 lua require('config/treesitter')
 
 let g:airline_theme='deus'
