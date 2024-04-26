@@ -30,6 +30,7 @@ setup_arch(){
     ./04-software.sh
     ./05-language.sh
     ./06-bluetooth.sh
+    ./99-arch-config.sh
     cd -
 }
 
