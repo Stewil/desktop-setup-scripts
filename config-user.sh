@@ -29,7 +29,7 @@ config_powerline(){
 
 config_tab_completion(){
     ELOG "CONFIGURING TAB COMPLETION"
-    if [ ! -a ~/.inputrc ]; then
+    if [ ! -e ~/.inputrc ]; then
         echo '$include /etc/inputrc' > ~/.inputrc
         echo 'set completion-ignore-case On' >> ~/.inputrc
         echo 'set colored-stats on' >> ~/.inputrc
@@ -61,20 +61,6 @@ config_neovim(){
     fi
     nvim --clean +qall
     nvim +PlugUpdate +UpdateRemotePlugins "+TSInstall cpp python" +qall
-}
-
-config_nerdfont(){
-    ELOG "CONFIGURING NERDFONTS"
-    NFDIR="/usr/share/fonts/truetype/nerdfonts"
-    if [ ! -d "$NFDIR" ]; then
-        sudo mkdir -p "$NFDIR"
-    fi
-    if [ ! -f "$NFDIR/Hack Regular Nerd Font Complete.ttf" ]; then
-        ELOG "INSTALLING NERDFONT: HACK"
-        wget -O /tmp/hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip -q --show-progress
-        sudo bash -c "cd /tmp && unzip hack.zip && cp Hack* $NFDIR/ || ELOG 'ERROR INSTALLING NF HACK'"
-    fi
-    sudo fc-cache -f -v
 }
 
 config_aliases(){
@@ -193,7 +179,6 @@ configure_user(){
         config_powerline
         config_tab_completion
         config_aliases
-        config_nerdfont
         config_neovim
         config_themes
         config_pcspkr

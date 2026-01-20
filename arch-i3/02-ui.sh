@@ -11,15 +11,10 @@ install_wm(){
 
 install_tools(){
     ELOG "INSTALLING VARIOUS TOOLS"
-    ADD polkit-gnome arandr nitrogen dunst rofi powerline powerline-fonts firefox acpi xorg-mkfontscale xorg-fonts-100dpi xorg-fonts-75dpi xorg-fonts-misc xorg-font-util
+    ADD polkit-gnome arandr nitrogen dunst rofi firefox acpi xorg-mkfontscale xorg-fonts-100dpi xorg-fonts-75dpi xorg-fonts-misc xorg-font-util
     ELOG "INSTALLING FONTS"
-    ADD noto-fonts-cjk noto-fonts-emoji noto-fonts
-    YADD ttf-font-awesome
-    if [ ! -f "$HOME/.local/share/fonts/DejaVu Sans Mono for Powerline.ttf" ]; then
-    mkdir -p "$HOME/.local/share/fonts"
-        sudo bash -c "git clone https://github.com/powerline/fonts.git \
-            --depth=1 /tmp/fonts && cd /tmp/fonts && ./install.sh"
-    fi
+    ADD noto-fonts-cjk noto-fonts-emoji noto-fonts ttf-hack-nerd woff2-font-awesome
+    YADD liquidprompt
     fc-cache -f -v
 }
 
