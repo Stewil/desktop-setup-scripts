@@ -4,102 +4,52 @@
 -- vim.g is a table for global variables
 -- vim.fn is a table for functions
 -- vim.api is a collection of api functions
+-- MADE FOR NEOVIM v12 may not work on other versions
+-- requires tree-sitter-cli for nvim-treesitter functionality
+-- may be replaced later as the project has been archived.
+-- people should be nicer to FOSS devs.
 
--- begin lazynvim package manager
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out,                            "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.add({
+     { src = 'https://github.com/neovim/nvim-lspconfig' },
+     { src = 'https://github.com/theniceboy/nvim-deus' },
+     { src = 'https://github.com/windwp/windline.nvim' },
+     { src = 'https://github.com/hiphish/rainbow-delimiters.nvim' },
+     { src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+        version = '4916d6592ede8c07973490d9322f187e07dfefac',
+        build = ':TSUpdate' }
+})
+
+-- setup windline
+local _windline = require('wlsample.airline')
+local tsconfigs = require('nvim-treesitter')
+tsconfigs.setup({
+    ensure_installed = {
+        'c', 'cpp', 'lua', 'python', 'toml', 'yaml', 'bash', 'css', 'json',
+        'javascript', 'rust'
+    },
+    sync_install = false,
+    auto_install = true,
+    ignore_install = {},
+    modules = {},
+    highlight = {
+        enable = true,
+        disable = function(_lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
+        additional_vim_regex_highlighting = false,
+    },
+    indent = {enable = true}
+})
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
--- Setup lazy.nvim
-require("lazy").setup({
-    spec = {
-        {
-            'theniceboy/nvim-deus',
-        },
-        {
-            'windwp/windline.nvim',
-            config = function()
-                require('wlsample.airline')
-            end,
-        },
-        {
-            'neovim/nvim-lspconfig',
-        },
-        {
-            "nvim-treesitter/nvim-treesitter",
-            dependencies = {
-                "nvim-treesitter/nvim-treesitter-refactor",
-                "HiPhish/rainbow-delimiters.nvim"
-            },
-            build = ":TSUpdate",
-            config = function()
-                local configs = require("nvim-treesitter.configs")
-                configs.setup({
-                    ensure_installed = {
-                        "c", "cpp", "lua", "python", "rust", "toml", "yaml",
-                        "javascript", "css", "bash",
-                    },
-                    sync_install = false,
-                    auto_install = true,
-                    ignore_install = {},
-                    modules = {},
-                    highlight = {
-                        enable = true,
-                        disable = function(_lang, buf)
-                            local max_filesize = 100 * 1024 -- 100 KB
-                            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                            if ok and stats and stats.size > max_filesize then
-                                return true
-                            end
-                        end,
-                        additional_vim_regex_highlighting = false,
-                    },
-                    indent = { enable = true },
-                    refactor = {
-                        highlight_definitions = {
-                            enable = true,
-                            clear_on_cursor_move = true,
-                        },
-                    },
-                    rainbow = {
-                        enable = true,
-                        query = "rainbow-parens",
-                        strategy = {
-                            [''] = 'rainbow-delimiters.strategy.global',
-                        },
-                    },
-                })
-            end
-        },
-        -- add your plugins here
-    },
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { "deus" } },
-    -- automatically check for plugin updates
-    checker = { enabled = false },
-    rocks = { enabled = false },
-})
--- end lazynvim
 
 -- begin opts
 -- vim.opt.encoding="utf-8" is eq to set encoding=utf-8
@@ -109,7 +59,8 @@ vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 vim.opt.updatetime = 300
 vim.opt.wildignorecase = true
 vim.opt.number = true
---vim.opt.mouse = ''
+vim.opt.termguicolors = true
+vim.opt.mouse = ''
 vim.opt.mousescroll = 'ver:8,hor:1'
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
@@ -205,6 +156,7 @@ vim.lsp.config['lua_ls'] = {
                     'vim',
                     'require'
                 },
+                unusedLocalExclude = { '_*' }
             },
             workspace = {
                 checkThirdParty = false,
