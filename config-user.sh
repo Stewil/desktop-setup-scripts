@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # thanks to https://www.pixiv.net/en/users/21549100 for the lovely bg illustration
 # thanks to https://www.pixiv.net/en/users/3069527 for the lovely greeter illustration
-ROOTDIR=$(dirname $(realpath "$0"))
+REALPATH="$(realpath "$0")"
+ROOTDIR="$(dirname "$REALPATH")"
 CFGDIR=$ROOTDIR/config
 DIST=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
 source "$ROOTDIR/script-utils.sh"
@@ -22,13 +23,9 @@ config_picom(){
     cp -r "$CFGDIR"/picom ~/.config/
 }
 
-config_powerline(){
-    ELOG "CONFIGURING POWERLINE"
-    cp -r "$CFGDIR"/powerline ~/.config/
-}
-
 config_tab_completion(){
     ELOG "CONFIGURING TAB COMPLETION"
+    # shellcheck disable=SC2016
     if [ ! -e ~/.inputrc ]; then
         echo '$include /etc/inputrc' > ~/.inputrc
         echo 'set completion-ignore-case On' >> ~/.inputrc
@@ -38,10 +35,6 @@ config_tab_completion(){
 
 config_neovim(){
     ELOG "CONFIGURING NEOVIM"
-    if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
-        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    fi
-    cp -r "$CFGDIR"/nvim ~/.config/
     cp "$CFGDIR"/clang-format ~/.clang-format
     NVIM_BIN="$(which nvim)"
     if [ "$DIST" != "ubuntu" ]; then
@@ -49,18 +42,9 @@ config_neovim(){
         sudo ln -s "$NVIM_BIN" /usr/bin/edit
         sudo ln -s "$NVIM_BIN" /usr/bin/vi
         sudo ln -s "$NVIM_BIN" /usr/bin/vim
-    else
-        sudo update-alternatives --install /usr/bin/editor  editor  "$NVIM_BIN" 100
-        sudo update-alternatives --install /usr/bin/edit    edit    "$NVIM_BIN" 100
-        sudo update-alternatives --install /usr/bin/vi      vi      "$NVIM_BIN" 100
-        sudo update-alternatives --install /usr/bin/vim     vim     "$NVIM_BIN" 100
-        sudo update-alternatives --set editor   "$NVIM_BIN"
-        sudo update-alternatives --set edit     "$NVIM_BIN"
-        sudo update-alternatives --set vi       "$NVIM_BIN"
-        sudo update-alternatives --set vim      "$NVIM_BIN"
     fi
     nvim --clean +qall
-    nvim +PlugUpdate +UpdateRemotePlugins "+TSInstall cpp python" +qall
+    nvim "+TSInstall cpp python" +qall
 }
 
 config_aliases(){
@@ -72,17 +56,6 @@ config_aliases(){
 config_themes(){
     ELOG "CONFIGURING THEMES"
     cp "$CFGDIR"/Xresources ~/.Xresources
-    mkdir -p ~/.themes
-    if [ ! -d ~/.themes/Nordic ]; then
-        git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
-    fi
-    if [ ! -d ~/.themes/firefox-nordic-theme ]; then
-        git clone https://github.com/EliverLara/firefox-nordic-theme ~/.themes/firefox-nordic-theme/ && ~/.themes/firefox-nordic-theme/scripts/install.sh 
-    fi
-    if [ ! -d ~/.local/share/icons/Zafiro-Icons-Dark/ ]; then
-        wget -N https://raw.githubusercontent.com/zayronxio/Zafiro-icons/master/Install-Zafiro-Icons.sh -q --show-progress  && chmod +x Install-Zafiro-Icons.sh && bash ./Install-Zafiro-Icons.sh
-    fi
-    cp -r "$CFGDIR"/gtk-3.0 ~/.config/
 }
 
 config_lightdm(){
@@ -102,7 +75,7 @@ config_pcspkr(){
 config_defaults(){
     ELOG "CONFIGURING DEFAULT APPLICATIONS"
     xdg-mime default thunar.desktop inode/directory
-    xdg-mime default nsxiv.desktop image/bmp image/gif image/jpeg image/jpg \
+    xdg-mime default ristretto.desktop image/bmp image/gif image/jpeg image/jpg \
         image/png image/tiff image/x-bmp image/x-portable-anymap \
         image/x-portable-bitmap image/x-portable-greymap image/x-tga \
         image/x-xpixmap image/webp
@@ -135,18 +108,18 @@ EOF
 config_greeter(){
     ELOG "CONFIGURING GREETER"
     if [ ! -f /usr/share/pixmaps/greeter.jpg ]; then
-    sudo mkdir -p /usr/share/pixmaps
-    sudo wget -O /usr/share/pixmaps/greeter.jpg \
-        --referer='https://www.pixiv.net/en/artworks/91390457' \
-        https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg -q --show-progress
-    if [ ! $(grep -q greeter.jpg /etc/lightdm/lightdm-gtk-greeter.conf) ]; then
-    sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
+        sudo mkdir -p /usr/share/pixmaps
+        sudo wget -O /usr/share/pixmaps/greeter.jpg \
+            --referer='https://www.pixiv.net/en/artworks/91390457' \
+            https://i.pximg.net/img-original/img/2021/07/21/11/40/10/91390457_p0.jpg -q --show-progress
+        if  ! grep -q greeter.jpg /etc/lightdm/lightdm-gtk-greeter.conf; then
+            sudo tee -a /etc/lightdm/lightdm-gtk-greeter.conf <<EOF
 position = 15%,center 70%,center
 background = /usr/share/pixmaps/greeter.jpg
 user-background = true
 theme-name = Adwaita-dark
 EOF
-    fi
+        fi
     fi
 }
 
@@ -161,11 +134,6 @@ config_ssh-agent(){
     systemctl --user enable ssh-agent
 }
 
-config_fcitx(){
-    ELOG 'CONFIGURING FCITX5'
-    cp -r "$CFGDIR"/fcitx5 ~/.config/
-}
-
 config_xfce4(){
     ELOG 'CONFIGURING XFCE4'
     cp -r "$CFGDIR"/xfce4 ~/.config/
@@ -176,7 +144,6 @@ configure_user(){
         config_i3
         config_rofi
         config_picom
-        config_powerline
         config_tab_completion
         config_aliases
         config_neovim
