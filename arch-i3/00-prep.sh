@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ROOTDIR=$(dirname $(realpath "$0"))
-source $ROOTDIR/arch-utils.sh
+source "$ROOTDIR/arch-utils.sh"
 
 install_base(){
     ELOG "INSTALL BASE"
@@ -10,12 +10,10 @@ install_base(){
 
 setup_yay() {
     ELOG "SETUP YAY"
-	cd /opt
+	cd /opt || exit
 	sudo git clone https://aur.archlinux.org/yay.git
-	sudo chown -R $USER:$USER ./yay
-	cd - && cd /opt/yay 
-	makepkg -si --noconfirm
-	cd -
+	sudo chown -R "$USER":"$USER" ./yay
+	cd - && cd /opt/yay && makepkg -si --noconfirm && cd - || exit
 }
 
 install_base
